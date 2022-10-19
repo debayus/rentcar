@@ -1,5 +1,29 @@
 <h3 align="center">RENT CAR</h3>
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Daftar isi</summary>
+  <ol>
+    <li><a href="#latar_belakang">Latar Belakang</a></li>
+    <li><a href="#masalah_yang_dihadapi">Masalah yang dihadapi</a></li>
+    <li><a href="#solusi">Solusi</a></li>
+    <li><a href="#batasan_masalah">Batasan Masalah</a></li>
+    <li><a href="#usecase_diagram">Usecase Diagram</a></li>
+    <li>
+      <a href="#activity_diagram">Activity Diagram</a>
+      <ul>
+        <li><a href="#activity_diagram_1">Menitipkan Kendaraan</a></li>
+        <li><a href="#activity_diagram_2">Melihat Laporan Kendaraan</a></li>
+        <li><a href="#activity_diagram_3">Mengelola Kondisi Kendaraan</a></li>
+        <li><a href="#activity_diagram_4">Melihat Ketersediaan Kendaraan</a></li>
+        <li><a href="#activity_diagram_5">Menyewa Kendaraan</a></li>
+        <li><a href="#activity_diagram_6">Melihat Laporan Omset</a></li>
+      </ul>
+    </li>
+    <li><a href="#entity_relationship_diagram">Entity Relationship Diagram</a></li>
+  </ol>
+</details>
+
 # Rent Car
 
 Rent Car adalah suatu unit usaha di bidang jasa penyewaan kendaraan motor maupun mobil. 
