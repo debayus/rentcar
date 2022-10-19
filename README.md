@@ -1,3 +1,5 @@
+<h3 align="center">RENT CAR</h3>
+
 # Rent Car
 
 Rent Car adalah suatu unit usaha di bidang jasa penyewaan kendaraan motor maupun mobil. 
