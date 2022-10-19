@@ -55,15 +55,11 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 * rekam omset sulit dilakukan
 * vendor tidak tau keadalan mobil
 
-========================================================================
-
 ## Solusi
 
 * adanya system berbasis website untuk customer agar bisa melihat ketersediaan kendaraan dan melakukan pemesan
 * adanya system untuk mengelola data kendaraan dan pemesanan
 * adanya system berbasis website untuk vendor adar bisa melihat kondisi kendaraannya
-
-========================================================================
 
 ## Batasan Masalah
 
