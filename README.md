@@ -1,4 +1,4 @@
-<h3 align="center">RENT CAR</h3>
+<h1 align="center">RENT CAR</h1>
 
 <!-- TABLE OF CONTENTS -->
 <details>
