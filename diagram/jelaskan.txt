@@ -1,0 +1,45 @@
+Menitipkan Kendaraan
+- vendor datang kembawa kendaraan dan surat2
+- mencatat data vendor dan data kendaraan
+- serah terima surat dan kendaraan
+
+Melihat Laporan Kendaraan
+- vendor membuka aplikasi
+- memilih kendaraan
+- melihat histori / laporan sewa
+
+Mengelola Kondisi Kendaraan
+- admin mencatat kondisi kendaraan
+- admin memfoto kendaraan
+- upload ke system
+
+Melihat Ketersediaan Kendaraan
+- customer buka website
+- memilih tanggal
+- memilih kendaraan
+
+Menyewa Kendaraan
+- jika online
+- customer mengisi data pribadi
+- upload ktp
+- memilih tgl dan kendaraan
+- membayar dp & upload bukti pembayaran
+- konformasi ke admin
+- jika telp
+- admin mencatat kendaraan dan tanggal
+- admin meminta foto ktp
+- admin mencatat pembayaran dp / lunas
+- cetak kontrak & tandatangan
+- admin pengecekan kendaraan & foto
+- serah terima kendaraan
+- customer titip pengenal
+- jika perpanjang
+- admin input perpanjang harga
+- pengembalian kendaraan & identitas
+- pengecekan kondisi
+- pelunasan & kemungkinan biaya tambahan
+
+Melihat Laporan Omset
+- buka aplikasi
+- pilih bulan dan tahun
+- melihat laporan
