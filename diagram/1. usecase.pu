@@ -1,0 +1,32 @@
+@startuml rent_car
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Customer" as customer
+actor "Vendor" as vendor
+actor "Admin" as admin
+
+rectangle "Rent Car" {
+
+    ' usecase 
+    usecase "Menitipkan Kendaraan" as todo1
+    usecase "Mengelola Kondisi Kendaraan" as todo2
+    usecase "Melihat ketersediaan kendaraan" as todo3
+    usecase "Menyewa Kendaraan" as todo4
+    usecase "Melihat Laporan Kendaraan" as todo5
+    usecase "Melihat Laporan Omset" as todo6
+
+    admin --> todo1
+    todo1 <-- vendor
+    admin --> todo2
+    todo3 <-- customer
+    admin --> todo4
+    todo4 --> customer
+    todo5 <-- vendor
+    admin --> todo6
+
+    todo5 .> todo1 : exclude
+}
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml melihat_laporan_omset
+
+title "Melihat Laporan Omset"
+
+|Admin|
+
+start
+
+stop
+
+@enduml

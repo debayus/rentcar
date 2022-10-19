@@ -1,0 +1,20 @@
+@startuml menitipkan_kendaraan
+
+title "Menitipkan Kendaraan"
+
+|Vendor|
+
+start
+:Menyerahkan Identitas & data kendaraan;
+
+|Admin|
+
+:Mencatat Data Vendor dan kendaraan;
+:Mencetak perjanjian;
+
+|Vendor|
+:Menandatangai perjanjian;
+
+stop
+
+@enduml
