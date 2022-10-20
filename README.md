@@ -78,5 +78,4 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 
 ## Usecase Diagram
 
-https://github.com/debayus/rentcar/blob/main/galleries/1.%20usecase.jpeg
-<img src="galleries/1_usecase.jpeg" alt="Logo" width="80" height="80">
+<img src="galleries/1_usecase.jpeg" alt="Logo">
