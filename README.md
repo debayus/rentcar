@@ -12,12 +12,12 @@
     <li>
       <a href="#activity_diagram">Activity Diagram</a>
       <ul>
-        <li><a href="#menitipkan_kendaraan">Menitipkan Kendaraan</a></li>
-        <li><a href="#melihat_laporan_kendaraan">Melihat Laporan Kendaraan</a></li>
-        <li><a href="#mengelola_kondisi_kendaraan">Mengelola Kondisi Kendaraan</a></li>
-        <li><a href="#melihat_ketersediaan_kendaraan">Melihat Ketersediaan Kendaraan</a></li>
-        <li><a href="#menyewa_kendaraan">Menyewa Kendaraan</a></li>
-        <li><a href="#melihat_laporan_omset">Melihat Laporan Omset</a></li>
+        <li><a href="#menitipkan-kendaraan">Menitipkan Kendaraan</a></li>
+        <li><a href="#melihat-laporan-kendaraan">Melihat Laporan Kendaraan</a></li>
+        <li><a href="#mengelola-kondisi-kendaraan">Mengelola Kondisi Kendaraan</a></li>
+        <li><a href="#melihat-ketersediaan-kendaraan">Melihat Ketersediaan Kendaraan</a></li>
+        <li><a href="#menyewa-kendaraan">Menyewa Kendaraan</a></li>
+        <li><a href="#melihat-laporan-omset">Melihat Laporan Omset</a></li>
       </ul>
     </li>
     <li><a href="#entity_relationship_diagram">Entity Relationship Diagram</a></li>
@@ -84,12 +84,24 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 
 ### Menitipkan Kendaraan
 
+<img src="galleries/2_activity_menitipkan_kendaraan.jpeg" alt="Logo">
+
 ### Melihat Laporan Kendaraan
+
+<img src="galleries/3_activity_mengelola_kondisi kendaraan.jpeg" alt="Logo">
 
 ### Mengelola Kondisi Kendaraan
 
+<img src="galleries/4_activity_melihat_ketersediaan_kendaraan.jpeg" alt="Logo">
+
 ### Melihat Ketersediaan Kendaraan
+
+<img src="galleries/5_activity_menyewa_kendaraan.jpeg" alt="Logo">
 
 ### Menyewa Kendaraan
 
+<img src="galleries/6_activity_melihat_laporan_kendaraan.jpeg" alt="Logo">
+
 ### Melihat Laporan Omset
+
+<img src="galleries/7_activity_melihat_laporan_omset.jpeg" alt="Logo">
