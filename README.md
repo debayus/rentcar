@@ -12,12 +12,12 @@
     <li>
       <a href="#activity_diagram">Activity Diagram</a>
       <ul>
-        <li><a href="#activity_diagram_1">Menitipkan Kendaraan</a></li>
-        <li><a href="#activity_diagram_2">Melihat Laporan Kendaraan</a></li>
-        <li><a href="#activity_diagram_3">Mengelola Kondisi Kendaraan</a></li>
-        <li><a href="#activity_diagram_4">Melihat Ketersediaan Kendaraan</a></li>
-        <li><a href="#activity_diagram_5">Menyewa Kendaraan</a></li>
-        <li><a href="#activity_diagram_6">Melihat Laporan Omset</a></li>
+        <li><a href="#menitipkan_kendaraan">Menitipkan Kendaraan</a></li>
+        <li><a href="#melihat_laporan_kendaraan">Melihat Laporan Kendaraan</a></li>
+        <li><a href="#mengelola_kondisi_kendaraan">Mengelola Kondisi Kendaraan</a></li>
+        <li><a href="#melihat_ketersediaan_kendaraan">Melihat Ketersediaan Kendaraan</a></li>
+        <li><a href="#menyewa_kendaraan">Menyewa Kendaraan</a></li>
+        <li><a href="#melihat_laporan_omset">Melihat Laporan Omset</a></li>
       </ul>
     </li>
     <li><a href="#entity_relationship_diagram">Entity Relationship Diagram</a></li>
