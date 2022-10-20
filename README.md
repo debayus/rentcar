@@ -79,3 +79,17 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 ## Usecase Diagram
 
 <img src="galleries/1_usecase.jpeg" alt="Logo">
+
+## Activity Diagram
+
+# Menitipkan Kendaraan
+
+# Melihat Laporan Kendaraan
+
+# Mengelola Kondisi Kendaraan
+
+# Melihat Ketersediaan Kendaraan
+
+# Menyewa Kendaraan
+
+# Melihat Laporan Omset
