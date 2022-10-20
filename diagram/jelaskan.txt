@@ -43,3 +43,24 @@ Melihat Laporan Omset
 - buka aplikasi
 - pilih bulan dan tahun
 - melihat laporan
+
+====================
+
+Aktor
+- mVendor
+- mAdmin
+- mCustomer
+- mUser
+- trNitipKendaraan
+- mKendaraan
+- trKondisiKendaraan
+- trKondisiKendaraanFoto
+- trBoking
+- trBokingPerjanjian
+- trBokingBiaya
+- mJenisBiaya
+- mKonfigurasi
+
+- vwKendaraanTersedia
+- vwKondisiKendaraan
+- vwOmset
