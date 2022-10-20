@@ -10,7 +10,7 @@
     <li><a href="#batasan-masalah">Batasan Masalah</a></li>
     <li><a href="#usecase-diagram">Usecase Diagram</a></li>
     <li>
-      <a href="#activity_diagram">Activity Diagram</a>
+      <a href="#activity-diagram">Activity Diagram</a>
       <ul>
         <li><a href="#menitipkan-kendaraan">Menitipkan Kendaraan</a></li>
         <li><a href="#melihat-laporan-kendaraan">Melihat Laporan Kendaraan</a></li>
