@@ -1,0 +1,115 @@
+@startuml erd
+
+hide circle
+skinparam linetype ortho
+
+entity "mUser" as mUser {
+    *Id : nvarchar(450) <<auto>>
+    --
+    Email : nvarchar(200)
+    HashPassword : nvarchar(500)
+}
+
+entity "mRole" as mRole {
+    *Id : nvarchar(450) <<auto>>
+    --
+    Nama : varchar(200)
+}
+
+entity "mUserRole" as mUserRole {
+    *Id_User : nvarchar(450) <<FK>>
+    *Id_Role : nvarchar(450) <<FK>>
+}
+
+entity "mVendor" as mVendor {
+    *Id : int <<auto>>
+    --
+    Id_User : nvarchar(450) <<FK>>
+    
+}
+
+entity "mAdmin" as mAdmin {
+    *Id : int <<auto>>
+    --
+    Id_User : nvarchar(450) <<FK>>
+}
+
+entity "mCustomer" as mCustomer {
+    *Id : int <<auto>>
+    --
+    Id_User : nvarchar(450) <<FK>>
+}
+
+entity "mKendaraan" as mKendaraan {
+    *Id : int <<auto>>
+    --
+    Id_Vendor : int <<FK>>
+}
+
+entity "trKondisiKendaraan" as trKondisiKendaraan {
+    *Id : int <<auto>>
+    --
+    Id_Kendaraan : int <<FK>>
+    Id_Admin : int <<FK>>
+}
+
+entity "trKondisiKendaraanFoto" as trKondisiKendaraanFoto {
+    *Id : int <<auto>>
+    --
+    Id_KondisiKendaraan : int <<FK>>
+}
+
+entity "trBoking" as trBoking {
+    *Id : int <<auto>>
+    --
+    Id_Kendaraan : int <<FK>>
+    Id_Customer : int <<FK>>
+    Id_Admin : int <<FK>>
+}
+
+entity "trBokingPerjanjian" as trBokingPerjanjian {
+    *Id : int <<FK>>
+    --
+}
+
+entity "trBokingBiaya" as trBokingBiaya {
+    *Id_Boking : int <<FK>>
+    *Id_JenisBiaya : int <<FK>>
+    --
+}
+
+entity "mJenisBiaya" as mJenisBiaya {
+    *Id : int <<auto>>
+    --
+}
+
+entity "mKonfigurasi" as mKonfigurasi {
+    *Id : int <<auto>>
+    --
+}
+
+mUser ||--o{ mUserRole
+mRole ||--o{ mUserRole
+mVendor ||--|| mUser
+mAdmin ||--|| mUser
+mCustomer ||--|| mUser
+mVendor ||--|{ mKendaraan
+
+trKondisiKendaraan }o--|| mKendaraan
+trKondisiKendaraan }o--|| mAdmin
+trKondisiKendaraan ||--o{ trKondisiKendaraanFoto
+
+trBoking ||--|{ mKendaraan
+trBoking ||--|{ mCustomer
+trBoking ||--|{ mAdmin
+trBoking ||--o| trBokingPerjanjian
+trBoking ||--o{ trBokingBiaya
+mJenisBiaya ||--o{ trBokingBiaya
+
+
+@enduml
+
+' Zero or One	|o--
+' Exactly One	||--
+' Zero or Many	}o--
+' One or Many	}|--

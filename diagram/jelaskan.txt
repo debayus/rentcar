@@ -51,7 +51,6 @@ Aktor
 - mAdmin
 - mCustomer
 - mUser
-- trNitipKendaraan
 - mKendaraan
 - trKondisiKendaraan
 - trKondisiKendaraanFoto
