@@ -1,0 +1,15 @@
+@startuml melihat_laporan_kendaraan
+
+title "Melihat Laporan Kendaraan"
+
+|Vendor|
+
+start
+
+:Membuka website;
+:Memilih kendaraan;
+:Melihat detail laporan kendaraan;
+
+stop
+
+@enduml

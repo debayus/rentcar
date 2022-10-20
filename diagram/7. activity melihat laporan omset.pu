@@ -6,6 +6,10 @@ title "Melihat Laporan Omset"
 
 start
 
+:Membuka website;
+:Memilih bulan dan tahun;
+:Melihat laporan omset;
+
 stop
 
 @enduml

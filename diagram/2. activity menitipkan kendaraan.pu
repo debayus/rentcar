@@ -5,15 +5,11 @@ title "Menitipkan Kendaraan"
 |Vendor|
 
 start
-:Menyerahkan Identitas & data kendaraan;
+:Menyerahkan Identitas & surat-surat kendaraan;
 
 |Admin|
 
 :Mencatat Data Vendor dan kendaraan;
-:Mencetak perjanjian;
-
-|Vendor|
-:Menandatangai perjanjian;
 
 stop
 

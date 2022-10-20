@@ -1,0 +1,14 @@
+@startuml melihat_ketersediaan_kendaraan
+
+title "Melihat Ketersediaan Kendaraan"
+
+|Customer|
+
+start
+:Membuka website;
+:Memilih tanggal;
+:Melihat kendaraan yang tersedia;
+
+stop
+
+@enduml

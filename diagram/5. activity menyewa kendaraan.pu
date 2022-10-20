@@ -1,0 +1,66 @@
+@startuml menyewa_kendaraan
+
+title "Menyewa Kendaraan"
+
+|Customer|
+
+start
+
+if (Online) then (yes)
+  :Mengisi data pribadi;
+  :Mengunggah Foto KTP;
+  :Memilih tanggal dan kendaraan;
+  :Memilih lama sewa;
+  :Membayar DP;
+  :Upload bukti pembayaran;
+else (no)
+  :Menghubungi Admin\natau datang langsung;
+  :Mengirim foto KTP,\ndatapribadi, kendaraan,\ntanggal dan lama sewa;
+
+  |Admin|
+  :Mencatat data customer;
+  :Memilih tanggal, kendaraan,\ndan lama sewa;
+  :Mengunggah foto ktp;
+
+  |Customer|
+  :Membayar DP\natau pelunasan langsung;
+
+endif
+
+|Admin|
+:Mengkorfirmasi dan\nmencatat pembayaran;
+:Mencetak surat perjanjian;
+
+|Customer|
+:Menandatangani surat perjanjian;
+:Memberikan tanda pengenal;
+
+|Admin|
+:Mengecek dan mengunggah\nkondisi kendaraan;
+:Menyerahkan kendaraan;
+
+if (Perpanjang) then (yes)
+
+|Admin|
+:Mencatat Perpanjangan sewa;
+
+else (no)
+endif
+
+|Customer|
+:Mengembalikan kendaraan;
+
+|Admin|
+:Mencatat kondisi mobil\ndan mengunggah foto\nkondisi kendaraan;
+:Memcetak bill sisa pembayaran;
+
+|Customer|
+:Membayar pelunasan;
+
+|Admin|
+:Mencatat pembayaran;
+:Mengembalikan identitas ke customer;
+
+stop
+
+@enduml
