@@ -75,3 +75,8 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 * aplikasi ini hanya dapat menyimpan foto keadaan mobil
 * aplikasi ini hanya mencatat pembayaran
 * aplikasi ini hanya dapat menghasilkan laporan omset, laporan sewa dan laporan kondisi mobil
+
+## Usecase Diagram
+
+https://github.com/debayus/rentcar/blob/main/galleries/1.%20usecase.jpeg
+<img src="galleries/1_usecase.jpeg" alt="Logo" width="80" height="80">
