@@ -82,14 +82,14 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 
 ## Activity Diagram
 
-# Menitipkan Kendaraan
+### Menitipkan Kendaraan
 
-# Melihat Laporan Kendaraan
+### Melihat Laporan Kendaraan
 
-# Mengelola Kondisi Kendaraan
+### Mengelola Kondisi Kendaraan
 
-# Melihat Ketersediaan Kendaraan
+### Melihat Ketersediaan Kendaraan
 
-# Menyewa Kendaraan
+### Menyewa Kendaraan
 
-# Melihat Laporan Omset
+### Melihat Laporan Omset
