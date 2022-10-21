@@ -21,6 +21,18 @@
       </ul>
     </li>
     <li><a href="#entity-relationship-diagram">Entity Relationship Diagram</a></li>
+    <li>
+      <a href="#mockup">Mockup Diagram</a>
+      <ul>
+        <li><a href="#login-page">Login Page</a></li>
+        <li><a href="#home-page">Home Page</a></li>
+        <li><a href="#register-page">Register Page</a></li>
+        <li><a href="#daftar-sewa-page">Daftar Sewa Page</a></li>
+        <li><a href="#sewa-baru-page">Sewa Baru Page</a></li>
+        <li><a href="#upload-bukti-pembayaran-page">Upload Bukti Pembayaran Page</a></li>
+        <li><a href="#detail-sewa-page">Detail Sewa Page</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
 
@@ -78,34 +90,64 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 
 ## Usecase Diagram
 
-<img src="galleries/1_usecase.jpeg" alt="Logo">
+<img src="galleries/1_usecase.jpeg" alt="Usecase Diagram">
 
 ## Activity Diagram
 
 ### Menitipkan Kendaraan
 
-<img src="galleries/2_activity_menitipkan_kendaraan.jpeg" alt="Logo">
+<img src="galleries/2_activity_menitipkan_kendaraan.jpeg" alt="Menitipkan Kendaraan">
 
 ### Melihat Laporan Kendaraan
 
-<img src="galleries/3_activity_mengelola_kondisi kendaraan.jpeg" alt="Logo">
+<img src="galleries/6_activity_melihat_laporan_kendaraan.jpeg" alt="Melihat Laporan Kendaraan">
 
 ### Mengelola Kondisi Kendaraan
 
-<img src="galleries/4_activity_melihat_ketersediaan_kendaraan.jpeg" alt="Logo">
+<img src="galleries/3_activity_mengelola_kondisi_kendaraan.jpeg" alt="Mengelola Kondisi Kendaraan">
 
 ### Melihat Ketersediaan Kendaraan
 
-<img src="galleries/5_activity_menyewa_kendaraan.jpeg" alt="Logo">
+<img src="galleries/4_activity_melihat_ketersediaan_kendaraan.jpeg" alt="Melihat Ketersediaan Kendaraan">
 
 ### Menyewa Kendaraan
 
-<img src="galleries/6_activity_melihat_laporan_kendaraan.jpeg" alt="Logo">
+<img src="galleries/5_activity_menyewa_kendaraan.jpeg" alt="Menyewa Kendaraan">
 
 ### Melihat Laporan Omset
 
-<img src="galleries/7_activity_melihat_laporan_omset.jpeg" alt="Logo">
+<img src="galleries/7_activity_melihat_laporan_omset.jpeg" alt="Melihat Laporan Omset">
 
 ### Entity Relationship Diagram
 
-<img src="galleries/8_erd.jpeg" alt="Logo">
+<img src="galleries/8_erd.jpeg" alt="Entity Relationship Diagram">
+
+## Mockup
+
+### Login Page
+
+<img src="galleries/10_login_page.png" alt="Login Page">
+
+### Home Page
+
+<img src="galleries/11_home_page.png" alt="Home Page">
+
+### Register Page
+
+<img src="galleries/12_register_page.png" alt="Register Page">
+
+### Daftar Sewa Page
+
+<img src="galleries/13_daftar_sewa_page.png" alt="Daftar Sewa Page">
+
+### Sewa Baru Page
+
+<img src="galleries/14_sewa_baru_page.png" alt="Sewa Baru Page">
+
+### Upload Bukti Pembayaran Page
+
+<img src="galleries/15_upload_bukti_pembayaran_page.png" alt="Upload Bukti Pembayaran Page">
+
+### Detail Sewa Page
+
+<img src="galleries/16_detail_sewa_page.png" alt="Detail Sewa Page">
