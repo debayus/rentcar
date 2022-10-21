@@ -7,7 +7,6 @@ entity "mUser" as mUser {
     *Id : nvarchar(450) <<auto>>
     --
     Email : nvarchar(200)
-    HashPassword : nvarchar(500)
 }
 
 entity "mRole" as mRole {
@@ -25,25 +24,57 @@ entity "mVendor" as mVendor {
     *Id : int <<auto>>
     --
     Id_User : nvarchar(450) <<FK>>
-    
+    Nama : varchar(200)
+    Alamat : varchar(500) : NULL
+    Telp : varchat(100) : NULL
 }
 
 entity "mAdmin" as mAdmin {
     *Id : int <<auto>>
     --
     Id_User : nvarchar(450) <<FK>>
+    Nama : varchar(200)
+    Telp : varchat(100) : NULL
 }
 
 entity "mCustomer" as mCustomer {
     *Id : int <<auto>>
     --
     Id_User : nvarchar(450) <<FK>>
+    Nama : varchar(200)
+    Alamat : varchar(500) : NULL
+    Telp : varchat(100) : NULL
+    FotoKTP : image : NULL
+}
+
+entity "mMerekKendaraan" as mMerekKendaraan {
+    *Id : int <<auto>>
+    --
+    Nama : varchar(100)
+}
+
+entity "mTipeKendaraan" as mTipeKendaraan {
+    *Id : int <<auto>>
+    --
+    Id_MerekKendaraan : int <<FK>>
+    Nama : varchar(100)
+    Harga : money
 }
 
 entity "mKendaraan" as mKendaraan {
     *Id : int <<auto>>
     --
     Id_Vendor : int <<FK>>
+    Id_TipeKendaraan : in <<FK>> 
+    NoPolisi : varchar(50)
+    TahunPembuatan : int : NULL
+    Warna : varchar(50) : NULL
+    Jenis : varchar() : Motor, Mobil
+    TanggalSamsat : datetime : NULL
+    TanggalSamsat5Tahun : datetime : NULL
+    NomorMesin : varchar(50)
+    STNKAtasNama : varchar(200)
+    STNKAlamat : varchar(500)
 }
 
 entity "trKondisiKendaraan" as trKondisiKendaraan {
@@ -51,12 +82,17 @@ entity "trKondisiKendaraan" as trKondisiKendaraan {
     --
     Id_Kendaraan : int <<FK>>
     Id_Admin : int <<FK>>
+    Tanggal : datetime
+    Kilometer : int : NULL
+    Bensin : int : NULL
+    Catatan : varchar(500) : NULL
 }
 
 entity "trKondisiKendaraanFoto" as trKondisiKendaraanFoto {
     *Id : int <<auto>>
     --
     Id_KondisiKendaraan : int <<FK>>
+    Foto : image
 }
 
 entity "trBoking" as trBoking {
@@ -65,27 +101,45 @@ entity "trBoking" as trBoking {
     Id_Kendaraan : int <<FK>>
     Id_Customer : int <<FK>>
     Id_Admin : int <<FK>>
+    Tanggal : datetime
+    TanggalSewa : datetime
+    LamaSewa : int
+    TanggalDiambil : datetime : NULL
+    TanggalDikembalian : datetime : NULL
+    Batal : bool : NULL
 }
 
 entity "trBokingPerjanjian" as trBokingPerjanjian {
     *Id : int <<FK>>
     --
+    Tanggal : datetime
+    NamaUsaha : varchat(200)
+    Telp : varchat(100)
+    Alamat : varchat(500)
+    Website : varchat(200)
 }
 
 entity "trBokingBiaya" as trBokingBiaya {
     *Id_Boking : int <<FK>>
     *Id_JenisBiaya : int <<FK>>
     --
+    Biaya : money
+    Lunas : bool
+    Catata : varchar(500) : NULL
+    FotoBukti : image : NULL
 }
 
 entity "mJenisBiaya" as mJenisBiaya {
     *Id : int <<auto>>
     --
+    Nama : varchar (200)
 }
 
 entity "mKonfigurasi" as mKonfigurasi {
     *Id : int <<auto>>
     --
+    Nama : varchar(50)
+    Value : varchar(1000)
 }
 
 mUser ||--o{ mUserRole
@@ -106,10 +160,7 @@ trBoking ||--o| trBokingPerjanjian
 trBoking ||--o{ trBokingBiaya
 mJenisBiaya ||--o{ trBokingBiaya
 
+mKendaraan ||--|{ mTipeKendaraan
+mTipeKendaraan ||--|{ mMerekKendaraan
 
 @enduml
-
-' Zero or One	|o--
-' Exactly One	||--
-' Zero or Many	}o--
-' One or Many	}|--
