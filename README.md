@@ -20,7 +20,7 @@
         <li><a href="#melihat-laporan-omset">Melihat Laporan Omset</a></li>
       </ul>
     </li>
-    <li><a href="#entity_relationship_diagram">Entity Relationship Diagram</a></li>
+    <li><a href="#entity-relationship-diagram">Entity Relationship Diagram</a></li>
   </ol>
 </details>
 
@@ -105,3 +105,7 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 ### Melihat Laporan Omset
 
 <img src="galleries/7_activity_melihat_laporan_omset.jpeg" alt="Logo">
+
+### Entity Relationship Diagram
+
+<img src="galleries/8_erd.jpeg" alt="Logo">
