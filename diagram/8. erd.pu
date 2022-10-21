@@ -75,6 +75,7 @@ entity "mKendaraan" as mKendaraan {
     NomorMesin : varchar(50)
     STNKAtasNama : varchar(200)
     STNKAlamat : varchar(500)
+    Foto : image : NULL
 }
 
 entity "trKondisiKendaraan" as trKondisiKendaraan {
@@ -95,7 +96,7 @@ entity "trKondisiKendaraanFoto" as trKondisiKendaraanFoto {
     Foto : image
 }
 
-entity "trBoking" as trBoking {
+entity "trSewa" as trSewa {
     *Id : int <<auto>>
     --
     Id_Kendaraan : int <<FK>>
@@ -109,7 +110,7 @@ entity "trBoking" as trBoking {
     Batal : bool : NULL
 }
 
-entity "trBokingPerjanjian" as trBokingPerjanjian {
+entity "trSewaPerjanjian" as trSewaPerjanjian {
     *Id : int <<FK>>
     --
     Tanggal : datetime
@@ -119,8 +120,8 @@ entity "trBokingPerjanjian" as trBokingPerjanjian {
     Website : varchat(200)
 }
 
-entity "trBokingBiaya" as trBokingBiaya {
-    *Id_Boking : int <<FK>>
+entity "trSewaBiaya" as trSewaBiaya {
+    *Id_Sewa : int <<FK>>
     *Id_JenisBiaya : int <<FK>>
     --
     Biaya : money
@@ -153,12 +154,12 @@ trKondisiKendaraan }o--|| mKendaraan
 trKondisiKendaraan }o--|| mAdmin
 trKondisiKendaraan ||--o{ trKondisiKendaraanFoto
 
-trBoking ||--|{ mKendaraan
-trBoking ||--|{ mCustomer
-trBoking ||--|{ mAdmin
-trBoking ||--o| trBokingPerjanjian
-trBoking ||--o{ trBokingBiaya
-mJenisBiaya ||--o{ trBokingBiaya
+trSewa ||--|{ mKendaraan
+trSewa ||--|{ mCustomer
+trSewa ||--|{ mAdmin
+trSewa ||--o| trSewaPerjanjian
+trSewa ||--o{ trSewaBiaya
+mJenisBiaya ||--o{ trSewaBiaya
 
 mKendaraan ||--|{ mTipeKendaraan
 mTipeKendaraan ||--|{ mMerekKendaraan

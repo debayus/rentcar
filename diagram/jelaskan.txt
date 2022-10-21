@@ -46,20 +46,20 @@ Melihat Laporan Omset
 
 ====================
 
-Aktor
-- mVendor
-- mAdmin
-- mCustomer
-- mUser
-- mKendaraan
-- trKondisiKendaraan
-- trKondisiKendaraanFoto
-- trBoking
-- trBokingPerjanjian
-- trBokingBiaya
-- mJenisBiaya
-- mKonfigurasi
+Login Page
+Register Page
 
-- vwKendaraanTersedia
-- vwKondisiKendaraan
-- vwOmset
+(customer) Home Page (daftar mobil)
+(customer) Sewa Baru Page (isi data diri)
+(customer) Upload Bukti Pembayaran Page
+(customer) Daftar Sewa Page
+(customer) Detail dewa Page
+
+(vendor) Daftar Kendaraan Page
+(vendor) Laporan kondisi kendaraan Page
+(vendor) Laporan Sewa Page
+
+(user) Master Page (User, role, admin, customer, tipe kendaraan, merek, jenis biaya, konfogurasi)
+(user) Mengelola Vendor Kendaraan Page
+(user) Mengelola Kondisi Kendaraan Page
+(user) Mengelola Sewa, perjanjian, pembayaran
