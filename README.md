@@ -25,11 +25,11 @@
       <a href="#mockup">Mockup Diagram</a>
       <ul>
         <li><a href="#login-page">Login Page</a></li>
-        <li><a href="#home-page">Home Page</a></li>
         <li><a href="#register-page">Register Page</a></li>
-        <li><a href="#daftar-sewa-page">Daftar Sewa Page</a></li>
+        <li><a href="#home-page">Home Page</a></li>
         <li><a href="#sewa-baru-page">Sewa Baru Page</a></li>
         <li><a href="#upload-bukti-pembayaran-page">Upload Bukti Pembayaran Page</a></li>
+        <li><a href="#daftar-sewa-page">Daftar Sewa Page</a></li>
         <li><a href="#detail-sewa-page">Detail Sewa Page</a></li>
       </ul>
     </li>
@@ -128,25 +128,25 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 
 <img src="galleries/10_login_page.png" alt="Login Page">
 
-### Home Page
-
-<img src="galleries/11_home_page.png" alt="Home Page">
-
 ### Register Page
 
-<img src="galleries/12_register_page.png" alt="Register Page">
+<img src="galleries/11_register_page.png" alt="Home Page">
 
-### Daftar Sewa Page
+### Home Page
 
-<img src="galleries/13_daftar_sewa_page.png" alt="Daftar Sewa Page">
+<img src="galleries/12_home_page.png" alt="Register Page">
 
 ### Sewa Baru Page
 
-<img src="galleries/14_sewa_baru_page.png" alt="Sewa Baru Page">
+<img src="galleries/13_sewa_baru_page.png" alt="Sewa Baru Page">
 
 ### Upload Bukti Pembayaran Page
 
-<img src="galleries/15_upload_bukti_pembayaran_page.png" alt="Upload Bukti Pembayaran Page">
+<img src="galleries/14_upload_bukti_pembayaran_page.png" alt="Upload Bukti Pembayaran Page">
+
+### Daftar Sewa Page
+
+<img src="galleries/15_daftar_sewa_page.png" alt="Daftar Sewa Page">
 
 ### Detail Sewa Page
 
