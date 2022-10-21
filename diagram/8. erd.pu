@@ -53,11 +53,19 @@ entity "mMerekKendaraan" as mMerekKendaraan {
     Nama : varchar(100)
 }
 
+entity "mJenisBahanBakar" as mJenisBahanBakar {
+    *Id : int <<auto>>
+    --
+    Nama : varchar(100)
+}
+
 entity "mTipeKendaraan" as mTipeKendaraan {
     *Id : int <<auto>>
     --
     Id_MerekKendaraan : int <<FK>>
+    Id_JenisBahanBakar : int <<FK>>
     Nama : varchar(100)
+    Transmisi : varchar(20) : Matic, Manual
     Harga : money
 }
 
@@ -87,6 +95,7 @@ entity "trKondisiKendaraan" as trKondisiKendaraan {
     Kilometer : int : NULL
     Bensin : int : NULL
     Catatan : varchar(500) : NULL
+    Kelengkapan : varchar(500) : NULL
 }
 
 entity "trKondisiKendaraanFoto" as trKondisiKendaraanFoto {
@@ -99,6 +108,7 @@ entity "trKondisiKendaraanFoto" as trKondisiKendaraanFoto {
 entity "trSewa" as trSewa {
     *Id : int <<auto>>
     --
+    NoBukti : varchar(50)
     Id_Kendaraan : int <<FK>>
     Id_Customer : int <<FK>>
     Id_Admin : int <<FK>>
@@ -107,6 +117,7 @@ entity "trSewa" as trSewa {
     LamaSewa : int
     TanggalDiambil : datetime : NULL
     TanggalDikembalian : datetime : NULL
+    Harga : money
     Batal : bool : NULL
 }
 
@@ -160,6 +171,7 @@ trSewa ||--|{ mAdmin
 trSewa ||--o| trSewaPerjanjian
 trSewa ||--o{ trSewaBiaya
 mJenisBiaya ||--o{ trSewaBiaya
+mJenisBahanBakar ||--o{ mTipeKendaraan
 
 mKendaraan ||--|{ mTipeKendaraan
 mTipeKendaraan ||--|{ mMerekKendaraan
