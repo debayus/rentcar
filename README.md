@@ -1,5 +1,25 @@
 <h1 align="center">RENT CAR</h1>
 
+## Free Class 
+
+Rancang Bangun Aplikasi dari Sebuah Masalah
+
+<a href="https://discord.gg/2J58QJmb">Discord</a>
+
+17 oktober 2022 - 26 oktober 2022
+jam : 19:00 wita - 21:00 WITA
+
+1. Memecahkan suatu masalah (17 Oktober)
+2. Mendisain rancangan (18 Oktober)
+3. Plant UML Usecase Diagram & Activity Diagram  (19 Oktober)
+4. Plant UML ERD  (20 Oktober)
+5. Balsamiq Mockup  (21 Oktober)
+6. New Web Project ASP.NET Core  (22 Oktober)
+7. Database Migration  (23 Oktober)
+8. MVC  (24 Oktober)
+9. Testing  (25 Oktober)
+10. Publish  (26 Oktober)
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Daftar isi</summary>
