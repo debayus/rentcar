@@ -1,10 +1,10 @@
 <h1 align="center">RENT CAR</h1>
 
-## Free Class 
+## Free Class
 
 Rancang Bangun Aplikasi dari Sebuah Masalah
 
-<a href="https://discord.gg/2J58QJmb">Discord</a>
+<a href="https://discord.gg/2J58QJmb">Discord</a> - Class Room
 
 17 oktober 2022 - 26 oktober 2022
 jam : 19:00 wita - 21:00 WITA
