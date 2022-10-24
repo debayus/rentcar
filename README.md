@@ -51,20 +51,20 @@ jam : 19:00 wita - 21:00 WITA
         <li><a href="#upload-bukti-pembayaran-page">Upload Bukti Pembayaran Page</a></li>
         <li><a href="#daftar-sewa-page">Daftar Sewa Page</a></li>
         <li><a href="#daftar-sewa-detail-page">Daftar Sewa Detail Page</a></li>
-        <li><a href="#kendaraan-vendor">kendaraan Vendor Page</a></li>
+        <li><a href="#kendaraan-vendor">Kendaraan Vendor Page</a></li>
         <li><a href="#laporan-kondisi-kendaraan-page">Laporan Kondisi Kendaraan Page</a></li>
         <li><a href="#laporan-sewa-page">Laporan Sewa Page</a></li>
         <li><a href="#admin-page">Admin Page</a></li>
         <li><a href="#admin-data-sewa-baru-page">Admin Data Sewa Baru Page</a></li>
         <li><a href="#admin-data-sewa-page">Admin Data Sewa Page</a></li>
-        <li><a href="#admin-data-sewa-detail-biaya-page">Admin Sata Sewa Detail Biaya Page</a></li>
-        <li><a href="#admin_data_sewa_detail_info_page">Admin Data Sewa Detail Info Page</a></li>
-        <li><a href="#admin_data_sewa_detail_history_page">Admin Data Sewa Detail History Page</a></li>
-        <li><a href="#admin_kondisi_kendaraan_page">Admin Kondisi Kendaraan Page</a></li>
-        <li><a href="#admin_kendaraan_page">Admin Kendaraan Page</a></li>
-        <li><a href="#admin_laporan_omset_page">Admin Laporan Omset Page</a></li>
-        <li><a href="#admin_laporan_sewa_page">Admin Laporan Sewa Page</a></li>
-        <li><a href="#admin_kondifurasi_page">Admin Kondifurasi Page</a></li>
+        <li><a href="#admin-data-sewa-detail-biaya-page">Admin Data Sewa Detail Biaya Page</a></li>
+        <li><a href="#admin_data-sewa-detail-info-page">Admin Data Sewa Detail Info Page</a></li>
+        <li><a href="#admin_data-sewa-detail-history-page">Admin Data Sewa Detail History Page</a></li>
+        <li><a href="#admin-kondisi-kendaraan-page">Admin Kondisi Kendaraan Page</a></li>
+        <li><a href="#admin-kendaraan-page">Admin Kendaraan Page</a></li>
+        <li><a href="#admin-laporan-omset-page">Admin Laporan Omset Page</a></li>
+        <li><a href="#admin-laporan-sewa-page">Admin Laporan Sewa Page</a></li>
+        <li><a href="#admin-kondifurasi-page">Admin Kondifurasi Page</a></li>
       </ul>
     </li>
   </ol>
@@ -158,30 +158,69 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 
 ## Mockup
 
-### Login Page
 
-<img src="galleries/10_login_page.png" alt="Login Page">
+
+
+
+### Login Page
+<img src="" alt="Login Page">
 
 ### Register Page
-
-<img src="galleries/11_register_page.png" alt="Home Page">
+<img src="" alt="Register Page">
 
 ### Home Page
-
-<img src="galleries/12_home_page.png" alt="Register Page">
+<img src="" alt="Home Page">
 
 ### Sewa Baru Page
-
-<img src="galleries/13_sewa_baru_page.png" alt="Sewa Baru Page">
+<img src="" alt="Sewa Baru Page">
 
 ### Upload Bukti Pembayaran Page
-
-<img src="galleries/14_upload_bukti_pembayaran_page.png" alt="Upload Bukti Pembayaran Page">
+<img src="" alt="Upload Bukti Pembayaran Page">
 
 ### Daftar Sewa Page
+<img src="" alt="Daftar Sewa Page">
 
-<img src="galleries/15_daftar_sewa_page.png" alt="Daftar Sewa Page">
+### Daftar Sewa Detail Page
+<img src="" alt="Daftar Sewa Detail Page">
 
-### Detail Sewa Page
+### Kendaraan Vendor Page
+<img src="" alt="Kendaraan Vendor Page">
 
-<img src="galleries/16_detail_sewa_page.png" alt="Detail Sewa Page">
+### Laporan Kondisi Kendaraan Page
+<img src="" alt="Laporan Kondisi Kendaraan Page">
+
+### Laporan Sewa Page
+<img src="" alt="Laporan Sewa Page">
+
+### Admin Page
+<img src="" alt="Admin Page">
+
+### Admin Data Sewa Baru Page
+<img src="" alt="Admin Data Sewa Baru Page">
+
+### Admin Data Sewa Page
+<img src="" alt="Admin Data Sewa Page">
+
+### Admin Data Sewa Detail Biaya Page
+<img src="" alt="Admin Data Sewa Detail Biaya Page">
+
+### Admin Data Sewa Detail Info Page
+<img src="" alt="Admin Data Sewa Detail Info Page">
+
+### Admin Data Sewa Detail History Page
+<img src="" alt="Admin Data Sewa Detail History Page">
+
+### Admin Kondisi Kendaraan Page
+<img src="" alt="Admin Kondisi Kendaraan Page">
+
+### Admin Kendaraan Page
+<img src="" alt="Admin Kendaraan Page">
+
+### Admin Laporan Omset Page
+<img src="" alt="Admin Laporan Omset Page">
+
+### Admin Laporan Sewa Page
+<img src="" alt="Admin Laporan Sewa Page">
+
+### Admin Kondifurasi Page
+<img src="" alt="Admin Kondifurasi Page">
