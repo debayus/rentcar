@@ -123,104 +123,92 @@ adapun alur dari proses penyewaan kendaraan sebagai berikut.
 * aplikasi ini hanya dapat menghasilkan laporan omset, laporan sewa dan laporan kondisi mobil
 
 ## Usecase Diagram
-
 <img src="galleries/1_usecase.jpeg" alt="Usecase Diagram">
 
 ## Activity Diagram
 
 ### Menitipkan Kendaraan
-
 <img src="galleries/2_activity_menitipkan_kendaraan.jpeg" alt="Menitipkan Kendaraan">
 
 ### Melihat Laporan Kendaraan
-
 <img src="galleries/6_activity_melihat_laporan_kendaraan.jpeg" alt="Melihat Laporan Kendaraan">
 
 ### Mengelola Kondisi Kendaraan
-
 <img src="galleries/3_activity_mengelola_kondisi_kendaraan.jpeg" alt="Mengelola Kondisi Kendaraan">
 
 ### Melihat Ketersediaan Kendaraan
-
 <img src="galleries/4_activity_melihat_ketersediaan_kendaraan.jpeg" alt="Melihat Ketersediaan Kendaraan">
 
 ### Menyewa Kendaraan
-
 <img src="galleries/5_activity_menyewa_kendaraan.jpeg" alt="Menyewa Kendaraan">
 
 ### Melihat Laporan Omset
-
 <img src="galleries/7_activity_melihat_laporan_omset.jpeg" alt="Melihat Laporan Omset">
 
 ### Entity Relationship Diagram
-
 <img src="galleries/8_erd.jpeg" alt="Entity Relationship Diagram">
 
 ## Mockup
 
-
-
-
-
 ### Login Page
-<img src="" alt="Login Page">
+<img src="galleries/10_login_page.png" alt="Login Page">
 
 ### Register Page
-<img src="" alt="Register Page">
+<img src="galleries/11_register_page.png" alt="Register Page">
 
 ### Home Page
-<img src="" alt="Home Page">
+<img src="galleries/12_home_page.png" alt="Home Page">
 
 ### Sewa Baru Page
-<img src="" alt="Sewa Baru Page">
+<img src="galleries/13_sewa_baru_page.png" alt="Sewa Baru Page">
 
 ### Upload Bukti Pembayaran Page
-<img src="" alt="Upload Bukti Pembayaran Page">
+<img src="galleries/14_sewa_upload_bukti_pembayaran_page.png" alt="Upload Bukti Pembayaran Page">
 
 ### Daftar Sewa Page
-<img src="" alt="Daftar Sewa Page">
+<img src="galleries/15_sewa_page.png" alt="Daftar Sewa Page">
 
 ### Daftar Sewa Detail Page
-<img src="" alt="Daftar Sewa Detail Page">
+<img src="galleries/16_sewa_detail_page.png" alt="Daftar Sewa Detail Page">
 
 ### Kendaraan Vendor Page
-<img src="" alt="Kendaraan Vendor Page">
+<img src="galleries/17_kendaraan_vendor_page.png" alt="Kendaraan Vendor Page">
 
 ### Laporan Kondisi Kendaraan Page
-<img src="" alt="Laporan Kondisi Kendaraan Page">
+<img src="galleries/18_laporan_kondisi_kendaraan_page.png" alt="Laporan Kondisi Kendaraan Page">
 
 ### Laporan Sewa Page
-<img src="" alt="Laporan Sewa Page">
+<img src="galleries/19_laporan_sewa_page.png" alt="Laporan Sewa Page">
 
 ### Admin Page
-<img src="" alt="Admin Page">
+<img src="galleries/20_admin_page.png" alt="Admin Page">
 
 ### Admin Data Sewa Baru Page
-<img src="" alt="Admin Data Sewa Baru Page">
+<img src="galleries/21_admin_data_sewa_baru_page.png" alt="Admin Data Sewa Baru Page">
 
 ### Admin Data Sewa Page
-<img src="" alt="Admin Data Sewa Page">
+<img src="galleries/21_admin_data_sewa_page.png" alt="Admin Data Sewa Page">
 
 ### Admin Data Sewa Detail Biaya Page
-<img src="" alt="Admin Data Sewa Detail Biaya Page">
+<img src="galleries/22_admin_data_sewa_detail_biaya_page.png" alt="Admin Data Sewa Detail Biaya Page">
 
 ### Admin Data Sewa Detail Info Page
-<img src="" alt="Admin Data Sewa Detail Info Page">
+<img src="galleries/22_admin_data_sewa_detail_info_page.png" alt="Admin Data Sewa Detail Info Page">
 
 ### Admin Data Sewa Detail History Page
-<img src="" alt="Admin Data Sewa Detail History Page">
+<img src="galleries/23_admin_data_sewa_detail_history_page.png" alt="Admin Data Sewa Detail History Page">
 
 ### Admin Kondisi Kendaraan Page
-<img src="" alt="Admin Kondisi Kendaraan Page">
+<img src="galleries/23_admin_kondisi_kendaraan_page.png" alt="Admin Kondisi Kendaraan Page">
 
 ### Admin Kendaraan Page
-<img src="" alt="Admin Kendaraan Page">
+<img src="galleries/24_admin_kendaraan_page.png" alt="Admin Kendaraan Page">
 
 ### Admin Laporan Omset Page
-<img src="" alt="Admin Laporan Omset Page">
+<img src="galleries/25_admin_laporan_omset_page.png" alt="Admin Laporan Omset Page">
 
 ### Admin Laporan Sewa Page
-<img src="" alt="Admin Laporan Sewa Page">
+<img src="galleries/26_admin_laporan_sewa_page.png" alt="Admin Laporan Sewa Page">
 
 ### Admin Kondifurasi Page
-<img src="" alt="Admin Kondifurasi Page">
+<img src="galleries/27_admin_kondifurasi_page.png" alt="Admin Kondifurasi Page">
