@@ -59,7 +59,7 @@ Register Page
 (vendor) 18_laporan_kondisi_kendaraan_page
 (vendor) 19_laporan_sewa_page
 
+(user) Mengelola Sewa, perjanjian, pembayaran
 (user) Mengelola Vendor Kendaraan Page
 (user) Mengelola Kondisi Kendaraan Page
-(user) Mengelola Sewa, perjanjian, pembayaran
 (user) Master Page (User, role, admin, customer, tipe kendaraan, merek, jenis biaya, konfogurasi)

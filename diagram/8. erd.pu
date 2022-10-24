@@ -89,6 +89,7 @@ entity "mKendaraan" as mKendaraan {
 entity "trKondisiKendaraan" as trKondisiKendaraan {
     *Id : int <<auto>>
     --
+    Id_Dewa : int <<FK>> : NULL
     Id_Kendaraan : int <<FK>>
     Id_Admin : int <<FK>>
     Tanggal : datetime
@@ -160,6 +161,7 @@ mVendor ||--|| mUser
 mAdmin ||--|| mUser
 mCustomer ||--|| mUser
 mVendor ||--|{ mKendaraan
+mSewa ||--o{ trKondisiKendaraan
 
 trKondisiKendaraan }o--|| mKendaraan
 trKondisiKendaraan }o--|| mAdmin
