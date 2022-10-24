@@ -50,7 +50,21 @@ jam : 19:00 wita - 21:00 WITA
         <li><a href="#sewa-baru-page">Sewa Baru Page</a></li>
         <li><a href="#upload-bukti-pembayaran-page">Upload Bukti Pembayaran Page</a></li>
         <li><a href="#daftar-sewa-page">Daftar Sewa Page</a></li>
-        <li><a href="#detail-sewa-page">Detail Sewa Page</a></li>
+        <li><a href="#daftar-sewa-detail-page">Daftar Sewa Detail Page</a></li>
+        <li><a href="#kendaraan-vendor">kendaraan Vendor Page</a></li>
+        <li><a href="#laporan-kondisi-kendaraan-page">Laporan Kondisi Kendaraan Page</a></li>
+        <li><a href="#laporan-sewa-page">Laporan Sewa Page</a></li>
+        <li><a href="#admin-page">Admin Page</a></li>
+        <li><a href="#admin-data-sewa-baru-page">Admin Data Sewa Baru Page</a></li>
+        <li><a href="#admin-data-sewa-page">Admin Data Sewa Page</a></li>
+        <li><a href="#admin-data-sewa-detail-biaya-page">Admin Sata Sewa Detail Biaya Page</a></li>
+        <li><a href="#admin_data_sewa_detail_info_page">Admin Data Sewa Detail Info Page</a></li>
+        <li><a href="#admin_data_sewa_detail_history_page">Admin Data Sewa Detail History Page</a></li>
+        <li><a href="#admin_kondisi_kendaraan_page">Admin Kondisi Kendaraan Page</a></li>
+        <li><a href="#admin_kendaraan_page">Admin Kendaraan Page</a></li>
+        <li><a href="#admin_laporan_omset_page">Admin Laporan Omset Page</a></li>
+        <li><a href="#admin_laporan_sewa_page">Admin Laporan Sewa Page</a></li>
+        <li><a href="#admin_kondifurasi_page">Admin Kondifurasi Page</a></li>
       </ul>
     </li>
   </ol>
