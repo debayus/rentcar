@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @Configuration["AppName"]</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="~/global_assets/css/icons/fontawesome/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/lib/mahas/dist/css/mahas.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script src="~/global_assets/js/main/jquery.min.js"></script>
+    <script src="~/global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="~/global_assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/lib/date-format/date.format.js"></script>
+    <script src="~/lib/mahas/dist/js/mahas.js"></script>
+    <!-- /theme JS files -->
+</head>
+<body>
+    <div class="page-content login-cover">
+        <div class="content-wrapper">
+            <div class="content d-flex justify-content-center align-items-center">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <i class="icon-people icon-2x text-warning border-warning-100 border-3 rounded-pill p-3 mb-3 mt-1"></i>
+                            <h5 class="mb-0">@ViewData["Title"]</h5>
+                        </div>
+
+                        @RenderBody()
+
+                        <span class="form-text text-center text-muted">
+                            <a target="_blank" href="@Configuration["Copyright:Url"]">@Configuration["Copyright:Name"]</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@await RenderSectionAsync("Scripts", required: false)

@@ -1,0 +1,49 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LayoutIdentity.cshtml";
+}
+
+<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="login-form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group form-group-feedback form-group-feedback-left">
+        <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="Email" aria-required="true" />
+        <div class="form-control-feedback">
+            <i class="icon-user text-muted"></i>
+        </div>
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-group-feedback form-group-feedback-left">
+        <input asp-for="Input.Password" class="form-control" placeholder="Password" autocomplete="current-password" aria-required="true" />
+        <div class="form-control-feedback">
+            <i class="icon-lock2 text-muted"></i>
+        </div>
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-group-feedback form-group-feedback-left">
+        <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm Password" autocomplete="new-password" aria-required="true" />
+        <div class="form-control-feedback">
+            <i class="icon-lock2 text-muted"></i>
+        </div>
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Register <i class="icon-circle-right2 ml-2"></i></button>
+    </div>
+</form>
+
+<div class="form-group">
+    <a asp-page="./Login" class="btn btn-light btn-block">Sign in</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

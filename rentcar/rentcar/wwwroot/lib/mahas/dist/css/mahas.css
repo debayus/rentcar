@@ -1,0 +1,134 @@
+/*
+    v2.5.0 iPainter
+*/
+
+.mahas-alert {
+    z-index: 9998;
+    -webkit-transform: translate3d(0,0,0);
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    left: 10px;
+}
+
+
+@media (min-width: 576px) {
+    .mahas-alert {
+        left:auto;
+    }
+}
+
+[data-action=plus]:after {
+    content: "\ed5a";
+}
+
+[data-action=filter]:after {
+    content: "\ee88";
+}
+
+
+#itable_loading {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 3px;
+    text-align: center;
+}
+
+#mahas_loading {
+    position: absolute;
+    z-index: 9999;
+    -webkit-transform: translate3d(0,0,0);
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 3px;
+    text-align: center;
+}
+
+    #itable_loading .spinner,
+    #mahas_loading .spinner {
+        top: calc(50% - 0.5rem);
+    }
+
+.table-button {
+    padding: 0 !important;
+    width: 10px;
+}
+
+.table-button .btn{
+    border-radius:0;
+}
+
+.table-input {
+    padding: 0 !important;
+}
+
+    .table-input .form-control {
+        border:none;
+        border-radius: 0;
+    }
+
+.table .detail-active {
+    color: #fff !important;
+    background-color: #4db6ac !important;
+}
+
+.paginate_button.current {
+    cursor:default;
+}
+
+.table-lookup {
+    cursor:pointer;
+}
+
+.modal-canvas canvas {
+    background-color: white;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.modal-canvas {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333333e0;
+    z-index: 1000;
+    padding-top: 20px;
+    z-index: 9999;
+}
+
+.modal-canvas-body {
+    background-color: white;
+    width: auto;
+}
+
+.modal-canvas .menu {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}
+
+.home-brand-label {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 2px;
+}
