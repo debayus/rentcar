@@ -1,0 +1,25 @@
+{
+    "AppName": "Rent Car",
+    "Copyright": {
+      "Name": "debayus",
+      "Url": "https://debayus.mahas.my.id/"
+    },
+    "ConnectionStrings": {
+      "DefaultConnection": ""
+    },
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information",
+        "Microsoft.AspNetCore": "Warning"
+      }
+    },
+    "AllowedHosts": "*",
+    "Authentication": {
+      "Google": {
+        "ClientId": "",
+        "ClientSecret": ""
+      }
+    }
+  }
+  
+  
