@@ -14,6 +14,7 @@
     <None Remove="Microsoft.AspNetCore.Authentication.Google" />
     <None Remove="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" />
     <None Remove="Migrations\" />
+    <None Remove="Models\Db\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -37,5 +38,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Models\Db\" />
   </ItemGroup>
 </Project>

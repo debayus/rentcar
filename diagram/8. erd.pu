@@ -66,6 +66,7 @@ entity "mTipeKendaraan" as mTipeKendaraan {
     Id_JenisBahanBakar : int <<FK>>
     Nama : varchar(100)
     Transmisi : varchar(20) : Matic, Manual
+    Jenis : varchar() : Motor, Mobil
     Harga : money
 }
 
@@ -77,7 +78,6 @@ entity "mKendaraan" as mKendaraan {
     NoPolisi : varchar(50)
     TahunPembuatan : int : NULL
     Warna : varchar(50) : NULL
-    Jenis : varchar() : Motor, Mobil
     TanggalSamsat : datetime : NULL
     TanggalSamsat5Tahun : datetime : NULL
     NomorMesin : varchar(50)
