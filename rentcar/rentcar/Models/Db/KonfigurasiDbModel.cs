@@ -11,7 +11,7 @@ namespace rentcar.Models.Db
         [StringLength(100)]
         public string Nama { get; set; } = "";
 
-        [StringLength(1000)]
+        [StringLength(500)]
         public string? Value { get; set; }
     }
 }
