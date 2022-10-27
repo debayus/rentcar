@@ -17,9 +17,6 @@ namespace rentcar.Models.Db
         [StringLength(200)]
 		public string Nama { get; set; } = "";
 
-        [StringLength(100)]
-        public string? Telp { get; set; }
-
         public IdentityUser User { get; set; } = default!;
     }
 }

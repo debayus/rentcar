@@ -6,7 +6,7 @@ using rentcar.Models.Db;
 
 namespace rentcar.Data;
 
-public class ApplicationDbContext : IdentityDbContext
+public class  ApplicationDbContext: IdentityDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -41,11 +41,11 @@ public class ApplicationDbContext : IdentityDbContext
         var hasher = new PasswordHasher<IdentityUser>();
         var user = new IdentityUser("admin")
         {
-            NormalizedUserName = "admin",
+            NormalizedUserName = "ADMIN",
             Email = "admin@rentcar.com",
-            NormalizedEmail = "admin@rentcar.com",
+            NormalizedEmail = "ADMIN@RENTCAR.COM",
             EmailConfirmed = true,
-            SecurityStamp = string.Empty
+            SecurityStamp = string.Empty,
         };
         user.PasswordHash = hasher.HashPassword(user, "bali123456");
         builder.Entity<IdentityUser>().HasData(user);
@@ -57,8 +57,19 @@ public class ApplicationDbContext : IdentityDbContext
             UserId = user.Id
         });
 
+        // admin
+        builder.Entity<AdminDbModel>().HasData(
+            new AdminDbModel()
+            {
+                Id = 1,
+                Id_User = user.Id,
+                Nama = "Admin",
+            }
+        );
+
         // keys
-        builder.Entity<SewaBiayaDbModel>().HasKey(table => new {
+        builder.Entity<SewaBiayaDbModel>().HasKey(table => new
+        {
             table.Id_Sewa,
             table.Id_JenisBiaya,
         });
@@ -76,16 +87,16 @@ public class ApplicationDbContext : IdentityDbContext
             solar
         );
         builder.Entity<JenisBiayaDbModel>().HasData(
-            new JenisBiayaDbModel() { Nama = "DP", Id= 1 },
-            new JenisBiayaDbModel() { Nama = "Sisa Bayar", Id= 2 },
-            new JenisBiayaDbModel() { Nama = "Kerusakan", Id= 3 }
+            new JenisBiayaDbModel() { Nama = "DP", Id = 1 },
+            new JenisBiayaDbModel() { Nama = "Sisa Bayar", Id = 2 },
+            new JenisBiayaDbModel() { Nama = "Kerusakan", Id = 3 }
         );
         builder.Entity<KonfigurasiDbModel>().HasData(
             new KonfigurasiDbModel() { Nama = "Perusahaan", Value = "RENT CAR", Id = 1 },
             new KonfigurasiDbModel() { Nama = "Telp", Value = "081234567890", Id = 2 },
             new KonfigurasiDbModel() { Nama = "Website", Value = "debayus.mahas.my.id", Id = 3 },
-            new KonfigurasiDbModel() { Nama = "Alamat",Value = "Jln. Jalan No.26, Jimbaran, Badung, Bali", Id = 4 },
-            new KonfigurasiDbModel() { Nama = "DP",Value= "50", Id = 5 },
+            new KonfigurasiDbModel() { Nama = "Alamat", Value = "Jln. Jalan No.26, Jimbaran, Badung, Bali", Id = 4 },
+            new KonfigurasiDbModel() { Nama = "DP", Value = "50", Id = 5 },
             new KonfigurasiDbModel() { Nama = "Bank1", Value = "", Id = 6 },
             new KonfigurasiDbModel() { Nama = "Bank2", Value = "", Id = 7 },
             new KonfigurasiDbModel() { Nama = "Bank2Tampilkan", Value = "False", Id = 8 }

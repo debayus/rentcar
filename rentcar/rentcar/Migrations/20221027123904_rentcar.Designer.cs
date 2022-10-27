@@ -12,7 +12,7 @@ using rentcar.Data;
 namespace rentcar.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221025102857_rentcar")]
+    [Migration("20221027123904_rentcar")]
     partial class rentcar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,15 +53,15 @@ namespace rentcar.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "550824cd-2887-4edb-aab2-4e8650427e3a",
-                            ConcurrencyStamp = "b20cf8c0-1ce6-4bfe-9f0f-2a4002ff4c39",
+                            Id = "3a2bbc2b-b3bb-43ff-ad41-4b613092f780",
+                            ConcurrencyStamp = "a2f5a909-4464-475a-8154-1a0a73c89ec7",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "101a4afa-a8d6-4b4b-bb18-0d8178aafcda",
-                            ConcurrencyStamp = "babc8bc5-409f-4d3d-b2ac-485d7d8c133d",
+                            Id = "048fc5cf-1a1d-42fd-a7be-c8d60964ecd8",
+                            ConcurrencyStamp = "b09903ac-eedf-4311-ac62-2f70dd2d1d4f",
                             Name = "Vendor",
                             NormalizedName = "Vendor"
                         });
@@ -159,15 +159,15 @@ namespace rentcar.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "235cfa6b-297a-4010-ad87-d06a8e57705d",
+                            Id = "acfea0f0-134a-4d41-8b13-33827f3341c1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "14765850-5b3c-46ba-99ba-9bdf9316c92d",
+                            ConcurrencyStamp = "a8e797f0-90ca-4318-a78b-0e01ad882acf",
                             Email = "admin@rentcar.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "admin@rentcar.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFm/UeWc9xiSnkTyy6k6CYsdmSB07O7q7l+rX510tP7c+/dPGju/IeKr9/ce8rSa/g==",
+                            NormalizedEmail = "ADMIN@RENTCAR.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMHqCKx2L3Sj/OOH5Zeqd15rH5Y04PERC1Am35m+LNIwS/HwbIVtDnC2/JVqecI/8w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -241,8 +241,8 @@ namespace rentcar.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "235cfa6b-297a-4010-ad87-d06a8e57705d",
-                            RoleId = "550824cd-2887-4edb-aab2-4e8650427e3a"
+                            UserId = "acfea0f0-134a-4d41-8b13-33827f3341c1",
+                            RoleId = "3a2bbc2b-b3bb-43ff-ad41-4b613092f780"
                         });
                 });
 
@@ -285,15 +285,19 @@ namespace rentcar.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("Telp")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Id_User");
 
                     b.ToTable("mAdmin");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Id_User = "acfea0f0-134a-4d41-8b13-33827f3341c1",
+                            Nama = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("rentcar.Models.Db.CustomerDbModel", b =>
@@ -320,10 +324,6 @@ namespace rentcar.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Telp")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -575,13 +575,13 @@ namespace rentcar.Migrations
                         {
                             Id = 6,
                             Nama = "Bank1",
-                            Value = "BCA - 0123456789 - Atas Nama : RENT CAR"
+                            Value = ""
                         },
                         new
                         {
                             Id = 7,
                             Nama = "Bank2",
-                            Value = "BNI - 0123456789 - Atas Nama : RENT CAR"
+                            Value = ""
                         },
                         new
                         {
@@ -947,10 +947,6 @@ namespace rentcar.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Telp")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 

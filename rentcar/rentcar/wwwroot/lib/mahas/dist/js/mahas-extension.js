@@ -131,7 +131,7 @@ var FileUpload = function () {
         $('.file-input-custom').fileinput({
             previewFileType: 'image',
             browseLabel: 'Select',
-            browseClass: 'btn bg-slate-700',
+            browseClass: 'btn bg-dark text-light',
             browseIcon: '<i class="icon-image2 mr-2"></i>',
             removeLabel: 'Remove',
             removeClass: 'btn btn-danger',

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rentcar.Data;
 
 namespace rentcar.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class DataSewaController : Controller
 {
     private readonly ApplicationDbContext _db;

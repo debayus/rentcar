@@ -15,6 +15,7 @@
     <None Remove="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" />
     <None Remove="Migrations\" />
     <None Remove="Models\Db\" />
+    <None Remove="Models\View\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
@@ -35,5 +36,9 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Models\Db\" />
+    <Folder Include="Models\View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\global_assets\css\icons\icomoon\selection.json" />
   </ItemGroup>
 </Project>

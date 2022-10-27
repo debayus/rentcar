@@ -21,9 +21,6 @@ namespace rentcar.Models.Db
         [StringLength(500)]
         public string? Alamat { get; set; }
 
-        [StringLength(100)]
-        public string? Telp { get; set; }
-
         public IdentityUser User { get; set; } = default!;
     }
 }

@@ -814,7 +814,7 @@ class iPainter {
                                         <div class="input-group">
                                             <input type="text" min="1" max="100" class="form-control ipainter-text" placeholder="Text" value="${opt.text || '11'}">
                                             <div class="input-group-prepend">
-                                                <button type="button" class="btn bg-teal ipainter-text-button"><i class="icon-text-color"></i></button>
+                                                <button type="button" class="btn btn-teal ipainter-text-button"><i class="icon-text-color"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -1451,7 +1451,7 @@ const modalDialog = (status, headerText, bodyText, callback) => {
             `
                     <div class="modal-footer">
                         <button type="button" data-dismiss="modal" class="btn btn-link">Cancel</button>
-                        <button type="button" class="btn bg-${status || 'primary'} mahas-modal-dialog-yes">Yes</button>
+                        <button type="button" class="btn btn-${status || 'primary'} mahas-modal-dialog-yes">Yes</button>
                     </div>
                     ` : ''}
                 </div>
@@ -1486,7 +1486,7 @@ const passwordDialog = callback => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" data-dismiss="modal" class="btn btn-link">Cancel</button>
-                        <button type="button" class="btn bg-primary mahas-modal-password-yes">Yes</button>
+                        <button type="button" class="btn btn-primary mahas-modal-password-yes">Yes</button>
                     </div>
                 </div>
             </div>

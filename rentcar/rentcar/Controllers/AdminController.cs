@@ -29,6 +29,26 @@ public class AdminController : Controller
 
     public IActionResult Index()
     {
+        _db.mAdmin.Join(_db.Users, x => x.Id_User, y => y.Id, (x , y) => new
+        {
+            admin = x,
+            user = y
+        }).Select(x => new
+        {
+            Nama = x.admin.Nama,
+            Email = x.user.Email
+        }).Take(10);
+
+        _db.mAdmin.GroupJoin(_db.Users, x => x.Id_User, y => y.Id, (x, y) => new
+        {
+            admin = x,
+            user = y
+        }).SelectMany(x => x.user.DefaultIfEmpty(), (x, y) => new
+        {
+            Nama = x.admin.Nama,
+            Email = y == null ? "" : y.Email
+        });
+
         return View();
     }
 }

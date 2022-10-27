@@ -1,0 +1,84 @@
+﻿<div id="modal_Model" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title">Vendor</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+
+            <form autocomplete="off">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group d-none">
+                        <input type="hidden" id="Id" name="Id" />
+                    </div>
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" required name="Nama" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" required name="UserName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required name="Email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Telp</label>
+                        <input type="text" name="Telp" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea type="text" name="Alamat" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group show-only-type-post">
+                        <label>Password</label>
+                        <input type="password" name="Password" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary show-only-type-post show-only-type-put">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isetup_Model;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        isetup_Model = new iSetup({
+            id: 'modal_Model',
+            url : '@Url.Action("Data")',
+            param: e => ({
+                __RequestVerificationToken: e.target['__RequestVerificationToken'].value,
+                Id: e.target['Id'].value,
+                model: {
+                    ...getModelFromForm(e.target, isetup_Model),
+                }
+            }),
+            success: (r, t) => {
+                $(t.id).modal('hide');
+                itable_Model.refresh();
+            },
+            modalDataOnSuccess: (r, t) => {
+                const form = $(t.id).find('form')[0];
+                setFormFromModel(form, r.data, t);
+            },
+            modalOnReady: (e, t) => {
+				const form = $(t.id).find('form')[0];
+
+				if (t.type === 'POST') {
+                    form['Id'].value = 0;
+				}
+			}
+        });
+
+        isetup_Model.generateUrlKey = () => {
+            isetup_Model.form[0]['UrlKey'].value = idGenerator();
+        };
+    });
+</script>
+

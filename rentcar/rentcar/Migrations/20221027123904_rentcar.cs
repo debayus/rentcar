@@ -214,8 +214,7 @@ namespace rentcar.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Id_User = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Nama = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Telp = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    Nama = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -237,7 +236,6 @@ namespace rentcar.Migrations
                     Id_User = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     Nama = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Alamat = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Telp = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     FotoKTP = table.Column<byte[]>(type: "Image", nullable: true)
                 },
                 constraints: table =>
@@ -259,8 +257,7 @@ namespace rentcar.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Id_User = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     Nama = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Alamat = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Telp = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    Alamat = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -490,14 +487,14 @@ namespace rentcar.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "101a4afa-a8d6-4b4b-bb18-0d8178aafcda", "babc8bc5-409f-4d3d-b2ac-485d7d8c133d", "Vendor", "Vendor" },
-                    { "550824cd-2887-4edb-aab2-4e8650427e3a", "b20cf8c0-1ce6-4bfe-9f0f-2a4002ff4c39", "Admin", "Admin" }
+                    { "048fc5cf-1a1d-42fd-a7be-c8d60964ecd8", "b09903ac-eedf-4311-ac62-2f70dd2d1d4f", "Vendor", "Vendor" },
+                    { "3a2bbc2b-b3bb-43ff-ad41-4b613092f780", "a2f5a909-4464-475a-8154-1a0a73c89ec7", "Admin", "Admin" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "235cfa6b-297a-4010-ad87-d06a8e57705d", 0, "14765850-5b3c-46ba-99ba-9bdf9316c92d", "admin@rentcar.com", true, false, null, "admin@rentcar.com", "admin", "AQAAAAEAACcQAAAAEFm/UeWc9xiSnkTyy6k6CYsdmSB07O7q7l+rX510tP7c+/dPGju/IeKr9/ce8rSa/g==", null, false, "", false, "admin" });
+                values: new object[] { "acfea0f0-134a-4d41-8b13-33827f3341c1", 0, "a8e797f0-90ca-4318-a78b-0e01ad882acf", "admin@rentcar.com", true, false, null, "ADMIN@RENTCAR.COM", "ADMIN", "AQAAAAEAACcQAAAAEMHqCKx2L3Sj/OOH5Zeqd15rH5Y04PERC1Am35m+LNIwS/HwbIVtDnC2/JVqecI/8w==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "mJenisBahanBakar",
@@ -528,8 +525,8 @@ namespace rentcar.Migrations
                     { 3, "Website", "debayus.mahas.my.id" },
                     { 4, "Alamat", "Jln. Jalan No.26, Jimbaran, Badung, Bali" },
                     { 5, "DP", "50" },
-                    { 6, "Bank1", "BCA - 0123456789 - Atas Nama : RENT CAR" },
-                    { 7, "Bank2", "BNI - 0123456789 - Atas Nama : RENT CAR" },
+                    { 6, "Bank1", "" },
+                    { 7, "Bank2", "" },
                     { 8, "Bank2Tampilkan", "False" }
                 });
 
@@ -555,7 +552,12 @@ namespace rentcar.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "550824cd-2887-4edb-aab2-4e8650427e3a", "235cfa6b-297a-4010-ad87-d06a8e57705d" });
+                values: new object[] { "3a2bbc2b-b3bb-43ff-ad41-4b613092f780", "acfea0f0-134a-4d41-8b13-33827f3341c1" });
+
+            migrationBuilder.InsertData(
+                table: "mAdmin",
+                columns: new[] { "Id", "Id_User", "Nama" },
+                values: new object[] { 1, "acfea0f0-134a-4d41-8b13-33827f3341c1", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "mTipeKendaraan",
