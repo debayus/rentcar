@@ -257,7 +257,7 @@ public class MasterCustomerController : Controller
     {
         var data = _db.mCustomer.FirstOrDefault(x => x.Id == Id);
         if (data?.FotoKTP == null) return NotFound();
-        return File(data.FotoKTP, "image/jpeg", data.Nama);
+        return File(data.FotoKTP, "image/jpeg");
     }
 }
 
