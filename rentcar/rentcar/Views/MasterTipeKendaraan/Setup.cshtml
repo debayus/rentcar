@@ -1,0 +1,97 @@
+﻿<div id="modal_Model" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title">Tipe Kendaraan</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <form autocomplete="off">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group d-none">
+                        <input type="hidden" id="Id" name="Id" />
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="Jenis" id="Jenis_Mobil" required value="Mobil">
+                                <label class="form-check-label" for="Jenis_Mobil">Mobil</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="Jenis" id="Jenis_Motor" required value="Motor">
+                                <label class="form-check-label" for="Jenis_Motor">Motor</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Merek</label>
+                        <select placeholder="Merek" required name="Id_MerekKendaraan" class="open-reset form-control text-left" data-datasource='@Url.Action("Select2_MerekKendaraan")'></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipe</label>
+                        <input type="text" required name="Nama" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Transmisi</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="Transmisi" id="Transmisi_Manual" required value="Manual">
+                                <label class="form-check-label" for="Transmisi_Manual">Manual</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="Transmisi" id="Transmisi_Matic" required value="Matic">
+                                <label class="form-check-label" for="Transmisi_Matic">Matic</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Bahan Bakar</label>
+                        <select placeholder="Jenis Bahan Bakar" required name="Id_JenisBahanBakar" class="open-reset form-control text-left" data-datasource='@Url.Action("Select2_JenisBahanBakar")'></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Harga / Hari</label>
+                        <input required type="text" name="Harga" class="form-control text-right mahas-currency" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary show-only-type-post show-only-type-put">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isetup_Model;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        isetup_Model = new iSetup({
+            id: 'modal_Model',
+            url : '@Url.Action("Data")',
+            param: e => ({
+                __RequestVerificationToken: e.target['__RequestVerificationToken'].value,
+                Id: e.target['Id'].value,
+                model: {
+                    ...getModelFromForm(e.target, isetup_Model),
+                }
+            }),
+            success: (r, t) => {
+                $(t.id).modal('hide');
+                itable_Model.refresh();
+            },
+            modalDataOnSuccess: (r, t) => {
+                const form = $(t.id).find('form')[0];
+                setFormFromModel(form, r.data, t);
+            },
+            modalOnReady: (e, t) => {
+				const form = $(t.id).find('form')[0];
+
+				if (t.type === 'POST') {
+                    form['Id'].value = 0;
+				}
+			}
+        });
+    });
+</script>
+

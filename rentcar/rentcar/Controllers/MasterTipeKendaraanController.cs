@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using rentcar.Models.View;
 
 namespace rentcar.Controllers;
 
@@ -32,16 +33,44 @@ public class MasterTipeKendaraanController : Controller
         return View();
     }
 
+    private new IEnumerable<MasterTipeKendaraanViewModel> ViewData
+    {
+        get
+        {
+            return _db.mTipeKendaraan.Select(x => new MasterTipeKendaraanViewModel
+            {
+                Id = x.Id,
+                Nama = x.Nama,
+                Harga = x.Harga,
+                Jenis = x.Jenis,
+                Id_MerekKendaraan = x.Id_MerekKendaraan,
+                Id_JenisBahanBakar = x.Id_JenisBahanBakar,
+                Transmisi = x.Transmisi,
+                Id_JenisBahanBakar_Text = x.JenisBahanBakar == null ? null : x.JenisBahanBakar.Nama,
+                Id_MerekKendaraan_Text = x.MerekKendaraan.Nama
+            });
+        }
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Datas(int pageSize, int pageIndex, int orderBy, OrderByTypeEnum orderByType, List<FilterModel> filter)
     {
-        IEnumerable<TipeKendaraanDbModel> query = _db.mTipeKendaraan;
+        IEnumerable<MasterTipeKendaraanViewModel> query = ViewData;
 
         foreach (var _filter in filter)
         {
             switch (_filter.Key)
             {
+                case "Jenis":
+                    if (string.IsNullOrEmpty(_filter.Value)) break;
+                    query = query.Where(x => x.Jenis == _filter.Value);
+                    break;
+                case "Merek":
+                    if (string.IsNullOrEmpty(_filter.Value)) break;
+                    var idMerekKendaraan = int.Parse(_filter.Value);
+                    query = query.Where(x => x.Id_MerekKendaraan == idMerekKendaraan);
+                    break;
                 case "Filter":
                     if (string.IsNullOrEmpty(_filter.Value)) break;
                     _filter.Value = _filter.Value.ToUpper();
@@ -51,9 +80,12 @@ public class MasterTipeKendaraanController : Controller
         }
 
         var totalRowCount = query.Count();
-        Func<TipeKendaraanDbModel, dynamic> _orderBy = (x =>
+        Func<MasterTipeKendaraanViewModel, dynamic> _orderBy = (x =>
             orderBy == 0 ? x.Id :
-            orderBy == 1 ? x.Nama :
+            orderBy == 1 ? x.Id_MerekKendaraan_Text :
+            orderBy == 2 ? x.Nama :
+            orderBy == 3 ? x.Transmisi! :
+            orderBy == 4 ? x.Harga :
             x.Id
         );
         query = orderByType == OrderByTypeEnum.ASC ? query.OrderBy(_orderBy) : query.OrderByDescending(_orderBy);
@@ -71,7 +103,7 @@ public class MasterTipeKendaraanController : Controller
     [HttpGet]
     public IActionResult Data(int Id)
     {
-        var model = _db.mTipeKendaraan.FirstOrDefault(x => x.Id == Id);
+        var model = ViewData.FirstOrDefault(x => x.Id == Id);
         if (model == null) return NotFound();
         return Json(new
         {
@@ -82,7 +114,7 @@ public class MasterTipeKendaraanController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [ActionName("Data")]
-    public IActionResult Post(TipeKendaraanDbModel model)
+    public IActionResult Post(MasterTipeKendaraanPostPutViewModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -91,14 +123,22 @@ public class MasterTipeKendaraanController : Controller
 
         model.Nama = model.Nama.Trim();
 
-        var hasName = _db.mTipeKendaraan.Where(x => x.Nama.ToUpper() == model.Nama.ToUpper()).Any();
+        var hasName = _db.mTipeKendaraan.Where(x => x.Nama.ToUpper() == model.Nama.ToUpper() && x.Id_MerekKendaraan == model.Id_MerekKendaraan).Any();
         if (hasName)
         {
             ModelState.AddModelError("Name", "Name already exists");
             return BadRequest(ModelState);
         }
 
-        _db.mTipeKendaraan.Add(model);
+        _db.mTipeKendaraan.Add(new TipeKendaraanDbModel()
+        {
+            Harga = model.Harga,
+            Id_JenisBahanBakar = model.Id_JenisBahanBakar,
+            Id_MerekKendaraan = model.Id_MerekKendaraan,
+            Jenis = model.Jenis,
+            Nama = model.Nama,
+            Transmisi = model.Transmisi
+        });
         _db.SaveChanges();
 
         return Ok();
@@ -107,7 +147,7 @@ public class MasterTipeKendaraanController : Controller
     [HttpPut]
     [ValidateAntiForgeryToken]
     [ActionName("Data")]
-    public IActionResult Put(int Id, TipeKendaraanDbModel model)
+    public IActionResult Put(int Id, MasterTipeKendaraanPostPutViewModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -117,14 +157,19 @@ public class MasterTipeKendaraanController : Controller
         var data = _db.mTipeKendaraan.FirstOrDefault(x => x.Id == Id);
         if (data == null) return NotFound();
 
-        var hasName = _db.mTipeKendaraan.Where(x => x.Nama.ToUpper() == model.Nama.ToUpper() && x.Id != Id).Any();
+        var hasName = _db.mTipeKendaraan.Where(x => x.Nama.ToUpper() == model.Nama.ToUpper() && x.Id != Id && x.Id_MerekKendaraan == model.Id_MerekKendaraan).Any();
         if (hasName)
         {
             ModelState.AddModelError("Name", "Name already exists");
             return BadRequest(ModelState);
         }
 
-        MahasConverter.Cast(model, data, "Id");
+        data.Harga = model.Harga;
+        data.Id_JenisBahanBakar = model.Id_JenisBahanBakar;
+        data.Id_MerekKendaraan = model.Id_MerekKendaraan;
+        data.Jenis = model.Jenis;
+        data.Nama = model.Nama;
+        data.Transmisi = model.Transmisi;
 
         _db.SaveChanges();
 
@@ -139,6 +184,60 @@ public class MasterTipeKendaraanController : Controller
         _db.mTipeKendaraan.Remove(_db.mTipeKendaraan.First(x => x.Id == Id));
         _db.SaveChanges();
         return Ok();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Select2_MerekKendaraan(int pageSize, int pageIndex, string filter)
+    {
+        IEnumerable<MerekKendaraanDbModel> query = _db.mMerekKendaraan;
+
+        if (!String.IsNullOrEmpty(filter))
+        {
+            filter = filter.ToUpper();
+            query = query.Where(x =>
+                (x.Nama ?? "").ToUpper().Contains(filter)
+            );
+        }
+
+        var totalRowCount = query.Count();
+        query = query.OrderBy(x => x.Nama);
+        var datas = query.Skip(pageSize * pageIndex).Take(pageSize).ToList();
+
+        return Json(new
+        {
+            Datas = datas.Select(x => new MahasSelectListItem(x.Nama, x.Id)).ToList(),
+            PageIndex = pageIndex,
+            PageSize = pageSize,
+            TotalCount = totalRowCount
+        });
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Select2_JenisBahanBakar(int pageSize, int pageIndex, string filter)
+    {
+        IEnumerable<JenisBahanBakarDbModel> query = _db.mJenisBahanBakar;
+
+        if (!String.IsNullOrEmpty(filter))
+        {
+            filter = filter.ToUpper();
+            query = query.Where(x =>
+                (x.Nama ?? "").ToUpper().Contains(filter)
+            );
+        }
+
+        var totalRowCount = query.Count();
+        query = query.OrderBy(x => x.Nama);
+        var datas = query.Skip(pageSize * pageIndex).Take(pageSize).ToList();
+
+        return Json(new
+        {
+            Datas = datas.Select(x => new MahasSelectListItem(x.Nama, x.Id)).ToList(),
+            PageIndex = pageIndex,
+            PageSize = pageSize,
+            TotalCount = totalRowCount
+        });
     }
 }
 

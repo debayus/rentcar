@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Master Customer";
+    ViewData["Title"] = "Master Merek Kendaraan";
     ViewData["Breadcrumb"] = new List<SelectListItem>()
 {
         new SelectListItem((string)ViewData["Title"]!, "active")
@@ -34,8 +34,6 @@
             <thead>
                 <tr class="bg-dark text-light">
                     <th class="sorting text-left" data-itable-sorting="1">Nama</th>
-                    <th class="sorting text-left" data-itable-sorting="2">Username</th>
-                    <th class="sorting text-left" data-itable-sorting="3">Telp</th>
                     <th class="text-center" style="width: 30px;">Action</th>
                 </tr>
             </thead>
@@ -64,8 +62,6 @@
 
                     // JS Columns
                     tbody += `<td class="text-left">${v.nama}</td>`;
-                    tbody += `<td class="text-left">${v.userName}</td>`;
-                    tbody += `<td class="text-left">${v.telp || '-'}</td>`;
                     // ----- JS Columns
 
                     tbody += '<td class="text-center">';

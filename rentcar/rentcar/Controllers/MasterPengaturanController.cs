@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using rentcar.Models.View;
+using System.Reflection.PortableExecutable;
 
 namespace rentcar.Controllers;
 
@@ -69,75 +71,62 @@ public class MasterPengaturanController : Controller
     }
 
     [HttpGet]
-    public IActionResult Data(int Id)
+    public IActionResult Data()
     {
-        var model = _db.mKonfigurasi.FirstOrDefault(x => x.Id == Id);
-        if (model == null) return NotFound();
+        var models = _db.mKonfigurasi.ToList();
+        var dp = models.FirstOrDefault(x => x.Nama == "DP")?.Value;
+        var bank2Tampilkan = models.FirstOrDefault(x => x.Nama == "Bank2Tampilkan")?.Value;
         return Json(new
         {
-            data = model,
+            data = new MasterPengaturanViewModel()
+            {
+                Alamat = models.FirstOrDefault(x => x.Nama == "Alamat")?.Value,
+                Bank1 = models.FirstOrDefault(x => x.Nama == "Bank1")?.Value,
+                Bank2 = models.FirstOrDefault(x => x.Nama == "Bank2")?.Value,
+                Perusahaan = models.FirstOrDefault(x => x.Nama == "Perusahaan")?.Value,
+                Telp = models.FirstOrDefault(x => x.Nama == "Telp")?.Value,
+                Website = models.FirstOrDefault(x => x.Nama == "Website")?.Value,
+                DP = string.IsNullOrEmpty(dp) ? null : double.Parse(dp),
+                Bank2Tampilkan = string.IsNullOrEmpty(bank2Tampilkan) ? null : bool.Parse(bank2Tampilkan),
+            },
         });
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    [ActionName("Data")]
-    public IActionResult Post(KonfigurasiDbModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        model.Nama = model.Nama.Trim();
-
-        var hasName = _db.mKonfigurasi.Where(x => x.Nama.ToUpper() == model.Nama.ToUpper()).Any();
-        if (hasName)
-        {
-            ModelState.AddModelError("Name", "Name already exists");
-            return BadRequest(ModelState);
-        }
-
-        _db.mKonfigurasi.Add(model);
-        _db.SaveChanges();
-
-        return Ok();
     }
 
     [HttpPut]
     [ValidateAntiForgeryToken]
     [ActionName("Data")]
-    public IActionResult Put(int Id, KonfigurasiDbModel model)
+    public IActionResult Put(MasterPengaturanViewModel model)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        var data = _db.mKonfigurasi.FirstOrDefault(x => x.Id == Id);
-        if (data == null) return NotFound();
+        var models = _db.mKonfigurasi.ToList();
 
-        var hasName = _db.mKonfigurasi.Where(x => x.Nama.ToUpper() == model.Nama.ToUpper() && x.Id != Id).Any();
-        if (hasName)
+        var properties = model.GetType().GetProperties();
+        for (int i = 0; i < properties.Length; i++)
         {
-            ModelState.AddModelError("Name", "Name already exists");
-            return BadRequest(ModelState);
+            var objValue = properties[i].GetValue(model);
+            var value = objValue == null ? null : objValue.GetType() == typeof(string) ? (string)objValue : objValue.ToString();
+            var text = properties[i].Name;
+
+            var dbModel = models.FirstOrDefault(x => x.Nama == text);
+            if (dbModel == null)
+            {
+                _db.mKonfigurasi.Add(new KonfigurasiDbModel()
+                {
+                    Nama = text,
+                    Value = value
+                });
+            }
+            else
+            {
+                dbModel.Value = value;
+            }
         }
-
-        MahasConverter.Cast(model, data, "Id");
-
         _db.SaveChanges();
 
-        return Ok();
-    }
-
-    [HttpDelete]
-    [ValidateAntiForgeryToken]
-    [ActionName("Data")]
-    public IActionResult Delete(int Id)
-    {
-        _db.mKonfigurasi.Remove(_db.mKonfigurasi.First(x => x.Id == Id));
-        _db.SaveChanges();
         return Ok();
     }
 }

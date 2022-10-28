@@ -1,1 +1,83 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Master Pengaturan";
+    ViewData["Breadcrumb"] = new List<SelectListItem>()
+    {
+        new SelectListItem((string)ViewData["Title"]!, "active")
+    };
+}
+
+<div id="form_Model">
+    <div class="card">
+        <div class="card-header bg-dark text-light">
+            <h5 class="card-title">Pengaturan</h5>
+        </div>
+
+        <form autocomplete="off">
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Perusahaan</label>
+                    <input type="text" name="Perusahaan" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Telp</label>
+                    <input type="text" name="Telp" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="text" name="Website" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Alamat</label>
+                    <textarea name="Alamat" class="form-control" style=" height: 100px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>DP %</label>
+                    <input type="number" name="DP" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Bank 1</label>
+                    <textarea name="Bank1" class="form-control" style=" height: 100px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="Bank2Tampilkan" name="Bank2Tampilkan">
+                        <label class="form-check-label" for="Bank2Tampilkan">Tampilkan Bank 2</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Bank 2</label>
+                    <textarea name="Bank2" class="form-control" style=" height: 100px;"></textarea>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <button type="submit" class="btn btn-primary show-only-type-post show-only-type-put">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    let isetup_Model;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        isetup_Model = new iSetup({
+            id: 'form_Model',
+            url : '@Url.Action("Data")',
+            param: e => ({
+                __RequestVerificationToken: e.target['__RequestVerificationToken'].value,
+                model: {
+                    ...getModelFromForm(e.target, isetup_Model),
+                }
+            }),
+            success: (r, t) => {
+                showAlert('Berhasil disimpan', 'success');
+            },
+            stateDataOnSuccess: (r, t) => {
+                const form = $(t.id).find('form')[0];
+                setFormFromModel(form, r.data, t);
+            },
+        });
+        isetup_Model.openState('PUT');
+    });
+</script>
+

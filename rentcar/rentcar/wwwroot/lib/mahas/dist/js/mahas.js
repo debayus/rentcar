@@ -25,6 +25,8 @@
 // 2.5.10 isetup init ipainter update
 // 2.5.11 initHelper update bug
 // 2.6.0 .net core 6
+// 2.6.1 sidebar
+// 2.6.2 nav bar
 
 const triggerModels = (isetup, modelKey) => {
     const model = isetup.models[modelKey];
@@ -1419,11 +1421,14 @@ const clearCookie = name => {
 };
 
 const initMahas = () => {
-    if ($('.sidebar-main-toggle').length > 0) {
-        $('.sidebar-main-toggle').on('click', () => {
-            setCookie('sidebar', $('body').hasClass('sidebar-xs').toString(), 360);
+    if (getCookie('sidebar') === 'true') {
+        $('.sidebar-main-resize').trigger('click');
+    }
+    if ($('.sidebar-main-resize').length > 0) {
+        $('.sidebar-main-resize').on('click', () => {
+            setCookie('sidebar', $('.sidebar-main').hasClass('sidebar-main-resized').toString(), 360);
         });
-        let li = $('.sidebar.sidebar-main li a[href="' + window.location.pathname + '"]').parent('li');
+        let li = $('.sidebar.sidebar-main li a[href="' + window.location.pathname + '"]').parent('.nav-item');
         li.find('.nav-link').addClass('active');
         let parent = li.closest('.nav-item-submenu');
         if (parent.length > 0) {
