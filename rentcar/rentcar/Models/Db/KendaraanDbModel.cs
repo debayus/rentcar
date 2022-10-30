@@ -39,6 +39,8 @@ namespace rentcar.Models.Db
         [Column(TypeName = "Image")]
         public byte[]? Foto { get; set; }
 
+        public string? FotoFileName { get; set; }
+
         public VendorDbModel Vendor { get; set; } = default!;
         public TipeKendaraanDbModel TipeKendaraan { get; set; } = default!;
     }

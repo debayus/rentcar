@@ -13,6 +13,7 @@ namespace rentcar.Models.View
         public string? Telp { get; set; }
         public string Email { get; set; } = "";
         public string? Alamat { get; set; }
+        public bool HasFotoKTP { get; set; }
     }
 
     public class MasterCustomerPostViewModel
@@ -33,8 +34,6 @@ namespace rentcar.Models.View
         public string Password { get; set; } = "";
 
         public string? Alamat { get; set; }
-
-        public IFormFile? FotoKTP { get; set; }
     }
 
     public class MasterCustomerPutViewModel
@@ -52,8 +51,6 @@ namespace rentcar.Models.View
         public string Email { get; set; } = "";
 
         public string? Alamat { get; set; }
-
-        public IFormFile? FotoKTP { get; set; }
     }
 }
 

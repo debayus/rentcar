@@ -36,11 +36,7 @@
                         <label>Password</label>
                         <input type="password" name="Password" class="form-control" />
                     </div>
-                    <div class="form-group">
-                        <label>Foto KTP</label>
-                        <input type="file" name="FotoKTP" accept="image/*" class="form-control" />
-                    </div>
-                    <div class="form-group show-only-type-get show-only-type-put">
+                    <div class="form-group show-only-type-get">
                         <img id="fotoKTP" class="img-thumbnail" />
                     </div>
                 </div>
@@ -54,24 +50,17 @@
 
 <script>
     let isetup_Model;
-    let fotoKTPkey = idGenerator();
     document.addEventListener("DOMContentLoaded", function (event) {
         isetup_Model = new iSetup({
             id: 'modal_Model',
             url : '@Url.Action("Data")',
-            param: e => {
-                var data = new FormData();
-                const foto = e.target['FotoKTP'].files[0];
-                if (foto) {
-                    fotoKTPkey = idGenerator();
+            param: e => ({
+                __RequestVerificationToken: e.target['__RequestVerificationToken'].value,
+                Id: e.target['Id'].value,
+                model: {
+                    ...getModelFromForm(e.target, isetup_Model),
                 }
-                data.append('FotoKTP', foto);
-                const m = getModelFromForm(e.target, isetup_Model);
-                Object.keys(m).forEach(x => {
-                    data.append(x, m[x]);
-                });
-                return data;
-            },
+            }),
             success: (r, t) => {
                 $(t.id).modal('hide');
                 itable_Model.refresh();
@@ -80,7 +69,12 @@
                 const form = $(t.id).find('form')[0];
                 setFormFromModel(form, r.data, t);
                 const url = '@Url.Action("Media", new { Id = "@Id" })';
-                $('#fotoKTP').attr('src', url.replace("@@Id", r.data.id) + '?id=' + fotoKTPkey);
+                if (r.data.hasFotoKTP) {
+                    $('#fotoKTP').attr('src', url.replace("@@Id", r.data.id) + '?id=' + fotoKTPkey);
+                    $('#fotoKTP').show();
+                } else {
+                    $('#fotoKTP').hide();
+                }
             },
             modalOnReady: (e, t) => {
 				const form = $(t.id).find('form')[0];
@@ -88,10 +82,6 @@
 				if (t.type === 'POST') {
                     form['Id'].value = 0;
 				}
-            },
-            otherAjax: {
-                contentType: false,
-                processData: false,
             }
         });
     });

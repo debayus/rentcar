@@ -236,7 +236,8 @@ namespace rentcar.Migrations
                     Id_User = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
                     Nama = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Alamat = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    FotoKTP = table.Column<byte[]>(type: "Image", nullable: true)
+                    FotoKTP = table.Column<byte[]>(type: "Image", nullable: true),
+                    FotoKTPFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -290,13 +291,14 @@ namespace rentcar.Migrations
                         name: "FK_mTipeKendaraan_mJenisBahanBakar_Id_JenisBahanBakar",
                         column: x => x.Id_JenisBahanBakar,
                         principalTable: "mJenisBahanBakar",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_mTipeKendaraan_mMerekKendaraan_Id_MerekKendaraan",
                         column: x => x.Id_MerekKendaraan,
                         principalTable: "mMerekKendaraan",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -314,7 +316,8 @@ namespace rentcar.Migrations
                     TanggalSamsat5Tahun = table.Column<DateTime>(type: "Date", nullable: true),
                     NomorMesin = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     STNKAtasNama = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    Foto = table.Column<byte[]>(type: "Image", nullable: true)
+                    Foto = table.Column<byte[]>(type: "Image", nullable: true),
+                    FotoFileName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -324,13 +327,73 @@ namespace rentcar.Migrations
                         column: x => x.Id_TipeKendaraan,
                         principalTable: "mTipeKendaraan",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_mKendaraan_mVendor_Id_Vendor",
                         column: x => x.Id_Vendor,
                         principalTable: "mVendor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "trKondisiKendaraan",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id_Sewa = table.Column<int>(type: "int", nullable: true),
+                    Id_Kendaraan = table.Column<int>(type: "int", nullable: false),
+                    Id_Admin = table.Column<int>(type: "int", nullable: false),
+                    Tanggal = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Kilometer = table.Column<int>(type: "int", nullable: true),
+                    Bensin = table.Column<int>(type: "int", nullable: true),
+                    Catatan = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Kelengkapan = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    SewaDbModelId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_trKondisiKendaraan", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_trKondisiKendaraan_mAdmin_Id_Admin",
+                        column: x => x.Id_Admin,
+                        principalTable: "mAdmin",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_trKondisiKendaraan_mKendaraan_Id_Kendaraan",
+                        column: x => x.Id_Kendaraan,
+                        principalTable: "mKendaraan",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "trKondisiKendaraanFoto",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id_KondisiKendaraan = table.Column<int>(type: "int", nullable: false),
+                    Nama = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Foto = table.Column<byte[]>(type: "Image", nullable: true),
+                    KondisiKendaraanDbModelId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_trKondisiKendaraanFoto", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_trKondisiKendaraanFoto_trKondisiKendaraan_Id_KondisiKendaraan",
+                        column: x => x.Id_KondisiKendaraan,
+                        principalTable: "trKondisiKendaraan",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_trKondisiKendaraanFoto_trKondisiKendaraan_KondisiKendaraanDbModelId",
+                        column: x => x.KondisiKendaraanDbModelId,
+                        principalTable: "trKondisiKendaraan",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -349,7 +412,8 @@ namespace rentcar.Migrations
                     TanggalDiambil = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TanggalDikembalian = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Harga = table.Column<decimal>(type: "Money", nullable: false),
-                    Batal = table.Column<bool>(type: "bit", nullable: false)
+                    Batal = table.Column<bool>(type: "bit", nullable: false),
+                    SewaPerjanjianId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -359,7 +423,7 @@ namespace rentcar.Migrations
                         column: x => x.Id_Admin,
                         principalTable: "mAdmin",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_trSewa_mCustomer_Id_Customer",
                         column: x => x.Id_Customer,
@@ -375,43 +439,6 @@ namespace rentcar.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "trKondisiKendaraan",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Id_Sewa = table.Column<int>(type: "int", nullable: true),
-                    Id_Kendaraan = table.Column<int>(type: "int", nullable: false),
-                    Id_Admin = table.Column<int>(type: "int", nullable: false),
-                    Tanggal = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Kilometer = table.Column<int>(type: "int", nullable: true),
-                    Bensin = table.Column<int>(type: "int", nullable: true),
-                    Catatan = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Kelengkapan = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_trKondisiKendaraan", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_trKondisiKendaraan_mAdmin_Id_Admin",
-                        column: x => x.Id_Admin,
-                        principalTable: "mAdmin",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_trKondisiKendaraan_mKendaraan_Id_Kendaraan",
-                        column: x => x.Id_Kendaraan,
-                        principalTable: "mKendaraan",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_trKondisiKendaraan_trSewa_Id_Sewa",
-                        column: x => x.Id_Sewa,
-                        principalTable: "trSewa",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "trSewaBiaya",
                 columns: table => new
                 {
@@ -420,7 +447,8 @@ namespace rentcar.Migrations
                     Biaya = table.Column<decimal>(type: "Money", nullable: false),
                     Lunas = table.Column<bool>(type: "bit", nullable: false),
                     Catatan = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    FotoBukti = table.Column<byte[]>(type: "Image", nullable: true)
+                    FotoBukti = table.Column<byte[]>(type: "Image", nullable: true),
+                    SewaDbModelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -430,13 +458,18 @@ namespace rentcar.Migrations
                         column: x => x.Id_JenisBiaya,
                         principalTable: "mJenisBiaya",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_trSewaBiaya_trSewa_Id_Sewa",
                         column: x => x.Id_Sewa,
                         principalTable: "trSewa",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_trSewaBiaya_trSewa_SewaDbModelId",
+                        column: x => x.SewaDbModelId,
+                        principalTable: "trSewa",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -458,28 +491,7 @@ namespace rentcar.Migrations
                         column: x => x.Id,
                         principalTable: "trSewa",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "trKondisiKendaraanFoto",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Id_KondisiKendaraan = table.Column<int>(type: "int", nullable: false),
-                    Nama = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Foto = table.Column<byte[]>(type: "Image", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_trKondisiKendaraanFoto", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_trKondisiKendaraanFoto_trKondisiKendaraan_Id_KondisiKendaraan",
-                        column: x => x.Id_KondisiKendaraan,
-                        principalTable: "trKondisiKendaraan",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -487,14 +499,14 @@ namespace rentcar.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "048fc5cf-1a1d-42fd-a7be-c8d60964ecd8", "b09903ac-eedf-4311-ac62-2f70dd2d1d4f", "Vendor", "Vendor" },
-                    { "3a2bbc2b-b3bb-43ff-ad41-4b613092f780", "a2f5a909-4464-475a-8154-1a0a73c89ec7", "Admin", "Admin" }
+                    { "7539cf89-3bf4-494f-96fb-c833861f7ee1", "fdedcc99-f666-4495-acec-29bbe03c6b66", "Vendor", "Vendor" },
+                    { "a13c13a6-da81-4a30-a79f-ff4fd03efe33", "6214c233-9996-468e-871d-a6fe4f63d5b8", "Admin", "Admin" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "acfea0f0-134a-4d41-8b13-33827f3341c1", 0, "a8e797f0-90ca-4318-a78b-0e01ad882acf", "admin@rentcar.com", true, false, null, "ADMIN@RENTCAR.COM", "ADMIN", "AQAAAAEAACcQAAAAEMHqCKx2L3Sj/OOH5Zeqd15rH5Y04PERC1Am35m+LNIwS/HwbIVtDnC2/JVqecI/8w==", null, false, "", false, "admin" });
+                values: new object[] { "a0af2712-ad41-46ce-824e-63c0dfc736e3", 0, "4eba7859-524e-460e-a2a3-dba74228c96d", "admin@rentcar.com", true, false, null, "ADMIN@RENTCAR.COM", "ADMIN", "AQAAAAEAACcQAAAAEOG0JoH1oxbQNumZV8bA80XZUKJXHfsNNjDi/nNSHz/R1iqwHPoGNwpTBgHpVfMoZA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "mJenisBahanBakar",
@@ -552,12 +564,12 @@ namespace rentcar.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "3a2bbc2b-b3bb-43ff-ad41-4b613092f780", "acfea0f0-134a-4d41-8b13-33827f3341c1" });
+                values: new object[] { "a13c13a6-da81-4a30-a79f-ff4fd03efe33", "a0af2712-ad41-46ce-824e-63c0dfc736e3" });
 
             migrationBuilder.InsertData(
                 table: "mAdmin",
                 columns: new[] { "Id", "Id_User", "Nama" },
-                values: new object[] { 1, "acfea0f0-134a-4d41-8b13-33827f3341c1", "Admin" });
+                values: new object[] { 1, "a0af2712-ad41-46ce-824e-63c0dfc736e3", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "mTipeKendaraan",
@@ -666,9 +678,19 @@ namespace rentcar.Migrations
                 column: "Id_Sewa");
 
             migrationBuilder.CreateIndex(
+                name: "IX_trKondisiKendaraan_SewaDbModelId",
+                table: "trKondisiKendaraan",
+                column: "SewaDbModelId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_trKondisiKendaraanFoto_Id_KondisiKendaraan",
                 table: "trKondisiKendaraanFoto",
                 column: "Id_KondisiKendaraan");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_trKondisiKendaraanFoto_KondisiKendaraanDbModelId",
+                table: "trKondisiKendaraanFoto",
+                column: "KondisiKendaraanDbModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_trSewa_Id_Admin",
@@ -686,13 +708,77 @@ namespace rentcar.Migrations
                 column: "Id_Kendaraan");
 
             migrationBuilder.CreateIndex(
+                name: "IX_trSewa_SewaPerjanjianId",
+                table: "trSewa",
+                column: "SewaPerjanjianId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_trSewaBiaya_Id_JenisBiaya",
                 table: "trSewaBiaya",
                 column: "Id_JenisBiaya");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_trSewaBiaya_SewaDbModelId",
+                table: "trSewaBiaya",
+                column: "SewaDbModelId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_trKondisiKendaraan_trSewa_Id_Sewa",
+                table: "trKondisiKendaraan",
+                column: "Id_Sewa",
+                principalTable: "trSewa",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_trKondisiKendaraan_trSewa_SewaDbModelId",
+                table: "trKondisiKendaraan",
+                column: "SewaDbModelId",
+                principalTable: "trSewa",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_trSewa_trSewaPerjanjian_SewaPerjanjianId",
+                table: "trSewa",
+                column: "SewaPerjanjianId",
+                principalTable: "trSewaPerjanjian",
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_mAdmin_AspNetUsers_Id_User",
+                table: "mAdmin");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_mCustomer_AspNetUsers_Id_User",
+                table: "mCustomer");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_mVendor_AspNetUsers_Id_User",
+                table: "mVendor");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_mKendaraan_mTipeKendaraan_Id_TipeKendaraan",
+                table: "mKendaraan");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_mKendaraan_mVendor_Id_Vendor",
+                table: "mKendaraan");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_trSewa_mAdmin_Id_Admin",
+                table: "trSewa");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_trSewa_mKendaraan_Id_Kendaraan",
+                table: "trSewa");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_trSewaPerjanjian_trSewa_Id",
+                table: "trSewaPerjanjian");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -718,9 +804,6 @@ namespace rentcar.Migrations
                 name: "trSewaBiaya");
 
             migrationBuilder.DropTable(
-                name: "trSewaPerjanjian");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -730,22 +813,10 @@ namespace rentcar.Migrations
                 name: "mJenisBiaya");
 
             migrationBuilder.DropTable(
-                name: "trSewa");
-
-            migrationBuilder.DropTable(
-                name: "mAdmin");
-
-            migrationBuilder.DropTable(
-                name: "mCustomer");
-
-            migrationBuilder.DropTable(
-                name: "mKendaraan");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "mTipeKendaraan");
-
-            migrationBuilder.DropTable(
-                name: "mVendor");
 
             migrationBuilder.DropTable(
                 name: "mJenisBahanBakar");
@@ -754,7 +825,22 @@ namespace rentcar.Migrations
                 name: "mMerekKendaraan");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "mVendor");
+
+            migrationBuilder.DropTable(
+                name: "mAdmin");
+
+            migrationBuilder.DropTable(
+                name: "mKendaraan");
+
+            migrationBuilder.DropTable(
+                name: "trSewa");
+
+            migrationBuilder.DropTable(
+                name: "mCustomer");
+
+            migrationBuilder.DropTable(
+                name: "trSewaPerjanjian");
         }
     }
 }

@@ -80,6 +80,7 @@ public class MasterCustomerController : Controller
                 Email = x.User!.Email,
                 UserName = x.User!.UserName,
                 Alamat = x.Alamat,
+                HasFotoKTP = x.FotoKTP != null
             });
         }
     }
@@ -163,13 +164,6 @@ public class MasterCustomerController : Controller
                 Alamat = model.Alamat,
             };
 
-            if (model.FotoKTP != null)
-            {
-                using var ms = new MemoryStream();
-                model.FotoKTP.CopyTo(ms);
-                newData.FotoKTP = ms.ToArray();
-            }
-
             _db.mCustomer.Add(newData);
             _db.SaveChanges();
         }
@@ -211,13 +205,6 @@ public class MasterCustomerController : Controller
 
         _db.Database.BeginTransaction();
 
-        if (model.FotoKTP != null)
-        {
-            using var ms = new MemoryStream();
-            model.FotoKTP.CopyTo(ms);
-            data.FotoKTP = ms.ToArray();
-        }
-
         data.Nama = model.Nama;
         data.Alamat = model.Alamat;
         _user.PhoneNumber = model.Telp;
@@ -252,12 +239,25 @@ public class MasterCustomerController : Controller
         return Ok();
     }
 
+    [HttpPost]
+    public IActionResult UploadMedia(int id, string name, IFormFile file)
+    {
+        var data = _db.mCustomer.FirstOrDefault(x => x.Id == id);
+        if (data == null) return NotFound();
+        using var ms = new MemoryStream();
+        file.CopyTo(ms);
+        data.FotoKTP = ms.ToArray();
+        data.FotoKTPFileName = name;
+        _db.SaveChanges();
+        return Ok();
+    }
+
     [HttpGet]
     public IActionResult Media(int Id)
     {
         var data = _db.mCustomer.FirstOrDefault(x => x.Id == Id);
         if (data?.FotoKTP == null) return NotFound();
-        return File(data.FotoKTP, "image/jpeg");
+        return File(data.FotoKTP, Mahas.Helpers.MahasConverter.GetMimeType(data.FotoKTPFileName!));
     }
 }
 

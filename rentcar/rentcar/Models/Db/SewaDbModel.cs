@@ -39,5 +39,9 @@ namespace rentcar.Models.Db
         public KendaraanDbModel Kendaraan { get; set; } = default!;
         public CustomerDbModel Customer { get; set; } = default!;
         public AdminDbModel Admin { get; set; } = default!;
+        public SewaPerjanjianDbModel? SewaPerjanjian { get; set; }
+
+        public ICollection<KondisiKendaraanDbModel>? KondisiKendaraan { get; set; }
+        public ICollection<SewaBiayaDbModel>? SewaBiaya { get; set; }
     }
 }

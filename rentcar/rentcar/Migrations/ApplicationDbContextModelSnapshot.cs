@@ -51,15 +51,15 @@ namespace rentcar.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3a2bbc2b-b3bb-43ff-ad41-4b613092f780",
-                            ConcurrencyStamp = "a2f5a909-4464-475a-8154-1a0a73c89ec7",
+                            Id = "a13c13a6-da81-4a30-a79f-ff4fd03efe33",
+                            ConcurrencyStamp = "6214c233-9996-468e-871d-a6fe4f63d5b8",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "048fc5cf-1a1d-42fd-a7be-c8d60964ecd8",
-                            ConcurrencyStamp = "b09903ac-eedf-4311-ac62-2f70dd2d1d4f",
+                            Id = "7539cf89-3bf4-494f-96fb-c833861f7ee1",
+                            ConcurrencyStamp = "fdedcc99-f666-4495-acec-29bbe03c6b66",
                             Name = "Vendor",
                             NormalizedName = "Vendor"
                         });
@@ -157,15 +157,15 @@ namespace rentcar.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "acfea0f0-134a-4d41-8b13-33827f3341c1",
+                            Id = "a0af2712-ad41-46ce-824e-63c0dfc736e3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a8e797f0-90ca-4318-a78b-0e01ad882acf",
+                            ConcurrencyStamp = "4eba7859-524e-460e-a2a3-dba74228c96d",
                             Email = "admin@rentcar.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@RENTCAR.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMHqCKx2L3Sj/OOH5Zeqd15rH5Y04PERC1Am35m+LNIwS/HwbIVtDnC2/JVqecI/8w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOG0JoH1oxbQNumZV8bA80XZUKJXHfsNNjDi/nNSHz/R1iqwHPoGNwpTBgHpVfMoZA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -239,8 +239,8 @@ namespace rentcar.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "acfea0f0-134a-4d41-8b13-33827f3341c1",
-                            RoleId = "3a2bbc2b-b3bb-43ff-ad41-4b613092f780"
+                            UserId = "a0af2712-ad41-46ce-824e-63c0dfc736e3",
+                            RoleId = "a13c13a6-da81-4a30-a79f-ff4fd03efe33"
                         });
                 });
 
@@ -293,7 +293,7 @@ namespace rentcar.Migrations
                         new
                         {
                             Id = 1,
-                            Id_User = "acfea0f0-134a-4d41-8b13-33827f3341c1",
+                            Id_User = "a0af2712-ad41-46ce-824e-63c0dfc736e3",
                             Nama = "Admin"
                         });
                 });
@@ -312,6 +312,9 @@ namespace rentcar.Migrations
 
                     b.Property<byte[]>("FotoKTP")
                         .HasColumnType("Image");
+
+                    b.Property<string>("FotoKTPFileName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Id_User")
                         .IsRequired()
@@ -406,6 +409,9 @@ namespace rentcar.Migrations
                     b.Property<byte[]>("Foto")
                         .HasColumnType("Image");
 
+                    b.Property<string>("FotoFileName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Id_TipeKendaraan")
                         .HasColumnType("int");
 
@@ -478,6 +484,9 @@ namespace rentcar.Migrations
                     b.Property<int?>("Kilometer")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SewaDbModelId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Tanggal")
                         .HasColumnType("datetime2");
 
@@ -488,6 +497,8 @@ namespace rentcar.Migrations
                     b.HasIndex("Id_Kendaraan");
 
                     b.HasIndex("Id_Sewa");
+
+                    b.HasIndex("SewaDbModelId");
 
                     b.ToTable("trKondisiKendaraan");
                 });
@@ -506,6 +517,9 @@ namespace rentcar.Migrations
                     b.Property<int>("Id_KondisiKendaraan")
                         .HasColumnType("int");
 
+                    b.Property<int?>("KondisiKendaraanDbModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nama")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -513,6 +527,8 @@ namespace rentcar.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Id_KondisiKendaraan");
+
+                    b.HasIndex("KondisiKendaraanDbModelId");
 
                     b.ToTable("trKondisiKendaraanFoto");
                 });
@@ -690,9 +706,14 @@ namespace rentcar.Migrations
                     b.Property<bool>("Lunas")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("SewaDbModelId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id_Sewa", "Id_JenisBiaya");
 
                     b.HasIndex("Id_JenisBiaya");
+
+                    b.HasIndex("SewaDbModelId");
 
                     b.ToTable("trSewaBiaya");
                 });
@@ -728,6 +749,9 @@ namespace rentcar.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("SewaPerjanjianId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Tanggal")
                         .HasColumnType("datetime2");
 
@@ -747,6 +771,8 @@ namespace rentcar.Migrations
                     b.HasIndex("Id_Customer");
 
                     b.HasIndex("Id_Kendaraan");
+
+                    b.HasIndex("SewaPerjanjianId");
 
                     b.ToTable("trSewa");
                 });
@@ -1031,7 +1057,7 @@ namespace rentcar.Migrations
                     b.HasOne("rentcar.Models.Db.TipeKendaraanDbModel", "TipeKendaraan")
                         .WithMany()
                         .HasForeignKey("Id_TipeKendaraan")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("rentcar.Models.Db.VendorDbModel", "Vendor")
@@ -1050,7 +1076,7 @@ namespace rentcar.Migrations
                     b.HasOne("rentcar.Models.Db.AdminDbModel", "Admin")
                         .WithMany()
                         .HasForeignKey("Id_Admin")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("rentcar.Models.Db.KendaraanDbModel", "Kendaraan")
@@ -1061,7 +1087,12 @@ namespace rentcar.Migrations
 
                     b.HasOne("rentcar.Models.Db.SewaDbModel", "Sewa")
                         .WithMany()
-                        .HasForeignKey("Id_Sewa");
+                        .HasForeignKey("Id_Sewa")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("rentcar.Models.Db.SewaDbModel", null)
+                        .WithMany("KondisiKendaraan")
+                        .HasForeignKey("SewaDbModelId");
 
                     b.Navigation("Admin");
 
@@ -1075,8 +1106,12 @@ namespace rentcar.Migrations
                     b.HasOne("rentcar.Models.Db.KondisiKendaraanDbModel", "KondisiKendaraan")
                         .WithMany()
                         .HasForeignKey("Id_KondisiKendaraan")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("rentcar.Models.Db.KondisiKendaraanDbModel", null)
+                        .WithMany("KondisiKendaraanFoto")
+                        .HasForeignKey("KondisiKendaraanDbModelId");
 
                     b.Navigation("KondisiKendaraan");
                 });
@@ -1086,14 +1121,18 @@ namespace rentcar.Migrations
                     b.HasOne("rentcar.Models.Db.JenisBiayaDbModel", "JenisBiaya")
                         .WithMany()
                         .HasForeignKey("Id_JenisBiaya")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("rentcar.Models.Db.SewaDbModel", "Sewa")
                         .WithMany()
                         .HasForeignKey("Id_Sewa")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("rentcar.Models.Db.SewaDbModel", null)
+                        .WithMany("SewaBiaya")
+                        .HasForeignKey("SewaDbModelId");
 
                     b.Navigation("JenisBiaya");
 
@@ -1105,7 +1144,7 @@ namespace rentcar.Migrations
                     b.HasOne("rentcar.Models.Db.AdminDbModel", "Admin")
                         .WithMany()
                         .HasForeignKey("Id_Admin")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("rentcar.Models.Db.CustomerDbModel", "Customer")
@@ -1120,11 +1159,17 @@ namespace rentcar.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("rentcar.Models.Db.SewaPerjanjianDbModel", "SewaPerjanjian")
+                        .WithMany()
+                        .HasForeignKey("SewaPerjanjianId");
+
                     b.Navigation("Admin");
 
                     b.Navigation("Customer");
 
                     b.Navigation("Kendaraan");
+
+                    b.Navigation("SewaPerjanjian");
                 });
 
             modelBuilder.Entity("rentcar.Models.Db.SewaPerjanjianDbModel", b =>
@@ -1132,7 +1177,7 @@ namespace rentcar.Migrations
                     b.HasOne("rentcar.Models.Db.SewaDbModel", "Sewa")
                         .WithMany()
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Sewa");
@@ -1142,12 +1187,13 @@ namespace rentcar.Migrations
                 {
                     b.HasOne("rentcar.Models.Db.JenisBahanBakarDbModel", "JenisBahanBakar")
                         .WithMany()
-                        .HasForeignKey("Id_JenisBahanBakar");
+                        .HasForeignKey("Id_JenisBahanBakar")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("rentcar.Models.Db.MerekKendaraanDbModel", "MerekKendaraan")
                         .WithMany()
                         .HasForeignKey("Id_MerekKendaraan")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("JenisBahanBakar");
@@ -1164,6 +1210,18 @@ namespace rentcar.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("rentcar.Models.Db.KondisiKendaraanDbModel", b =>
+                {
+                    b.Navigation("KondisiKendaraanFoto");
+                });
+
+            modelBuilder.Entity("rentcar.Models.Db.SewaDbModel", b =>
+                {
+                    b.Navigation("KondisiKendaraan");
+
+                    b.Navigation("SewaBiaya");
                 });
 #pragma warning restore 612, 618
         }

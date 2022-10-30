@@ -33,5 +33,7 @@ namespace rentcar.Models.Db
         public SewaDbModel? Sewa { get; set; }
         public KendaraanDbModel Kendaraan { get; set; } = default!;
         public AdminDbModel Admin { get; set; } = default!;
+
+        public ICollection<KondisiKendaraanFotoDbModel>? KondisiKendaraanFoto { get; set; }
     }
 }

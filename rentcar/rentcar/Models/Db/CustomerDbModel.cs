@@ -23,6 +23,9 @@ namespace rentcar.Models.Db
         [Column(TypeName = "Image")]
         public byte[]? FotoKTP { get; set; }
 
+        public string? FotoKTPFileName { get; set; }
+
+
         public IdentityUser User { get; set; } = default!;
     }
 }

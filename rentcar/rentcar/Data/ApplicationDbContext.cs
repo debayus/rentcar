@@ -75,9 +75,22 @@ public class  ApplicationDbContext: IdentityDbContext
         });
 
         // foreign key
-        builder.Entity<SewaDbModel>().HasOne(c => c.Customer).WithMany().OnDelete(DeleteBehavior.Restrict);
-        builder.Entity<SewaDbModel>().HasOne(c => c.Kendaraan).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<AdminDbModel>().HasOne(c => c.User).WithMany().OnDelete(DeleteBehavior.Cascade);
+        builder.Entity<CustomerDbModel>().HasOne(c => c.User).WithMany().OnDelete(DeleteBehavior.Cascade);
+        builder.Entity<VendorDbModel>().HasOne(c => c.User).WithMany().OnDelete(DeleteBehavior.Cascade);
+        builder.Entity<KendaraanDbModel>().HasOne(c => c.TipeKendaraan).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<TipeKendaraanDbModel>().HasOne(c => c.MerekKendaraan).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<TipeKendaraanDbModel>().HasOne(c => c.JenisBahanBakar).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<KondisiKendaraanDbModel>().HasOne(c => c.Sewa).WithMany().OnDelete(DeleteBehavior.Restrict);
         builder.Entity<KondisiKendaraanDbModel>().HasOne(c => c.Kendaraan).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<KondisiKendaraanDbModel>().HasOne(c => c.Admin).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<KondisiKendaraanFotoDbModel>().HasOne(c => c.KondisiKendaraan).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<SewaBiayaDbModel>().HasOne(c => c.Sewa).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<SewaBiayaDbModel>().HasOne(c => c.JenisBiaya).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<SewaDbModel>().HasOne(c => c.Kendaraan).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<SewaDbModel>().HasOne(c => c.Customer).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<SewaDbModel>().HasOne(c => c.Admin).WithMany().OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<SewaPerjanjianDbModel>().HasOne(c => c.Sewa).WithMany().OnDelete(DeleteBehavior.Restrict);
 
         // add data
         var bensin = new JenisBahanBakarDbModel() { Nama = "Bensin", Id = 1 };

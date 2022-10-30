@@ -1,1 +1,180 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Kendaraan";
+    ViewData["Breadcrumb"] = new List<SelectListItem>()
+{
+        new SelectListItem((string)ViewData["Title"]!, "active")
+    };
+}
+
+<div class="card" id="table_Model">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">@ViewData["Title"]</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="plus" href="javascript:isetup_Model.openModal('POST')"></a>
+                <a class="list-icons-item" data-action="filter" data-toggle="collapse" href="#collapseFilter_table_Model"></a>
+                <a class="list-icons-item" data-action="reload" href="javascript:itable_Model.refresh()"></a>
+            </div>
+        </div>
+    </div>
+    <form class="itable-form collapse show" id="collapseFilter_table_Model">
+        @Html.AntiForgeryToken()
+        <input type="hidden" class="itable-pagesize" value="20" />
+        <div class="row col">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" data-itable-filter="Filter" placeholder="Cari" class="form-control" value="" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <select type="text" data-itable-filter="Vendor" placeholder="Vendor" class="form-control" onchange="itable_Model.refresh();"></select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <select type="text" data-itable-filter="Jenis" placeholder="Jenis" class="form-control" onchange="itable_Model.refresh();">
+                        <option>Mobil</option>
+                        <option>Motor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <select type="text" data-itable-filter="TipeKendaraan" placeholder="TipeKendaraan" class="form-control" onchange="itable_Model.refresh();"></select>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="d-none" />
+    </form>
+    <div class="datatable-scroll">
+        <table class="table table-hover dataTable table-xs table-striped">
+            <thead>
+                <tr class="bg-dark text-light">
+                    <th class="sorting text-left" data-itable-sorting="1">No Polisi</th>
+                    <th class="sorting text-left" data-itable-sorting="2">Tipe Kendaraan</th>
+                    <th class="sorting text-left" data-itable-sorting="3">Warna</th>
+                    <th class="sorting text-left" data-itable-sorting="4">Tgl Samsat</th>
+                    <th class="text-center">Foto</th>
+                    <th class="text-center" style="width: 30px;">Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div id="modal_Upload" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title">Upload Foto</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="info-file-uploader"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let itable_Model;
+    let fotoKendaraankey = '';
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        itable_Model = new iTable({
+            id: 'table_Model',
+            url: '@Url.Action("Datas")',
+            urlType:{
+                DELETE : '@Url.Action("Data")'
+            },
+            orderBy: 1,
+            success: (r, t) => {
+                let tbody = '';
+                if (r.datas.length === 0) tbody += t.trempty();
+                const verificationToken = $(t.id + ' form [name="__RequestVerificationToken"]').val();
+                const imgUrl = '@Url.Action("Media", new { Id = "@Id" })';
+                $.each(r.datas, (i, v) => {
+                    var _imgUrl = imgUrl.replace("@@Id", v.id) + '?id=' + fotoKendaraankey;
+
+                    tbody += '<tr>';
+
+                    // JS Columns
+                    tbody += `<td class="text-left">${v.noPolisi}</td>`;
+                    tbody += `<td class="text-left">${v.id_TipeKendaraan_Text}</td>`;
+                    tbody += `<td class="text-left">${v.warna || '-'}</td>`;
+                    tbody += `<td class="text-left">${dateToString(v.tanggalSamsat, 'dd/MM/yyyy') || '-'}</td>`;
+                    tbody += `<td class="text-center">${v.hasFoto ? `<a class="popup-link" href="${_imgUrl}">Lihat</a> | ` : ''}<a href="javascript:itable_Model.uploadFoto('${v.id}')">${(v.hasFoto ? 'Ganti' : 'Upload')}</a></td>`;
+                    // ----- JS Columns
+
+                    tbody += '<td class="text-center">';
+                    tbody += '<div class="list-icons">';
+                    tbody += '<div class="dropdown">';
+                    tbody += '<a href="#" class="list-icons-item" data-toggle="dropdown"><i class="icon-menu9"></i></a>';
+                    tbody += '<div class="dropdown-menu dropdown-menu-right">';
+
+                    // JS Action
+                    tbody += `<a class="dropdown-item" href="javascript:isetup_Model.openModal('GET',{ Id : '${v.id}' })"><i class="icon-eye"></i> Details</a></li>`;
+                    tbody += `<a class="dropdown-item" href="javascript:isetup_Model.openModal('PUT',{ Id : '${v.id}' })"><i class="icon-pencil"></i> Edit</a></li>`;
+                    tbody += `<a class="dropdown-item" href="javascript:itable_Model.delete({ Id : '${v.id}', __RequestVerificationToken : '${verificationToken}' }, itable_Model)"><i class="icon-trash"></i> Delete</a></li>`;
+
+                    // ----- JS Columns
+
+                    tbody += '</div>';
+                    tbody += '</div>';
+                    tbody += '</div>';
+                    tbody += '</td>';
+                    tbody += '</tr>';
+                });
+                $(t.id).find('tbody').html(tbody);
+                t.generateTableFooter(r.totalCount, r.pageSize, r.pageIndex);
+                $(itable_Model.id + ' .popup-link').magnificPopup({
+                    type: 'image'
+                });
+            }
+        });
+
+        mahasSelect2($(`${itable_Model.id} [data-itable-filter="TipeKendaraan"]`), '@Url.Action("Select2_TipeKendaraan")', () => ({
+            jenis: $('[data-itable-filter="Jenis"]').val()
+        }));
+        mahasSelect2($(`${itable_Model.id} [data-itable-filter="Vendor"]`), '@Url.Action("Select2_Vendor")');
+
+        itable_Model.uploadFoto = id => {
+            $('.info-file-uploader').show().pluploadQueue({
+                runtimes: 'html5, html4, Flash, Silverlight',
+                url: '@Url.Action("UploadMedia")',
+                chunk_size: '50mb',
+                unique_names: true,
+                header: true,
+                multi_selection: false,
+                filters: [
+                    { title: "Image files", extensions: "jpeg,jpg,gif,png" },
+                ],
+                resize: {
+                    width: 1080,
+                    height: 1080,
+                    quality: 80
+                },
+                multipart_params: { "id": id },
+                init: {
+                    UploadComplete: function (up, files) {
+                        if (!up.total.failed) {
+                            fotoKendaraankey = idGenerator();
+                            $('#modal_Upload').modal('hide');
+                            itable_Model.refresh();
+                        }
+                    },
+                    filesAdded: function (up, files) {
+                        $('#modal_Upload .plupload_start').click();
+                    },
+                },
+            });
+            $('#modal_Upload').modal();
+        };
+
+        itable_Model.refresh();
+    });
+</script>
+
+<partial name="Setup" />

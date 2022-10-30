@@ -1,0 +1,119 @@
+﻿<div id="modal_Model" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title">Kendaraan</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <form autocomplete="off">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group d-none">
+                        <input type="hidden" id="Id" name="Id" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Vendor</label>
+                                <select required placeholder="Vendor" name="Id_Vendor" class="open-reset form-control text-left" data-datasource='@Url.Action("Select2_Vendor")'></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input onchange="isetup_Model.jenisOnChange()" type="radio" class="form-check-input" name="Jenis" id="Jenis_Mobil" required value="Mobil">
+                                        <label class="form-check-label" for="Jenis_Mobil">Mobil</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input onchange="isetup_Model.jenisOnChange()" type="radio" class="form-check-input" name="Jenis" id="Jenis_Motor" required value="Motor">
+                                        <label class="form-check-label" for="Jenis_Motor">Motor</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>No Polisi</label>
+                                <input type="text" required name="NoPolisi" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>STNK Atas Nama</label>
+                                <input type="text" name="STNKAtasNama" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Tipe Kendaraan</label>
+                                <select required placeholder="TipeKendaraan" name="Id_TipeKendaraan" class="open-reset form-control text-left" data-datasource='@Url.Action("Select2_TipeKendaraan")'></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Tahun Pembuatan</label>
+                                <input type="number" name="TahunPembuatan" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor Mesin</label>
+                                <input type="text" name="NomorMesin" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Warna</label>
+                                <input type="text" name="Warna" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Samsat</label>
+                                <input type="date" name="TanggalSamsat" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Samsat 5 Tahun</label>
+                                <input type="date" name="TanggalSamsat5Tahun" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary show-only-type-post show-only-type-put">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isetup_Model;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        isetup_Model = new iSetup({
+            id: 'modal_Model',
+            url : '@Url.Action("Data")',
+            param: e => ({
+                __RequestVerificationToken: e.target['__RequestVerificationToken'].value,
+                Id: e.target['Id'].value,
+                model: {
+                    ...getModelFromForm(e.target, isetup_Model),
+                }
+            }),
+            success: (r, t) => {
+                $(t.id).modal('hide');
+                itable_Model.refresh();
+            },
+            modalDataOnSuccess: (r, t) => {
+                const form = $(t.id).find('form')[0];
+                setFormFromModel(form, r.data, t);
+            },
+            modalOnReady: (e, t) => {
+				const form = $(t.id).find('form')[0];
+
+				if (t.type === 'POST') {
+                    form['Id'].value = 0;
+				}
+			}
+        });
+
+        isetup_Model.jenisOnChange = () => {
+            $(isetup_Model.form[0]['Id_TipeKendaraan']).val('').trigger('change');
+        };
+
+        mahasSelect2($(isetup_Model.form[0]['Id_TipeKendaraan']), '@Url.Action("Select2_TipeKendaraan")', () => ({
+            jenis: isetup_Model.form[0]['Jenis'].value
+        }));
+    });
+</script>
+
