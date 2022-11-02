@@ -1,0 +1,142 @@
+﻿<div id="modal_Model" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title">Sewa Baru</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <form autocomplete="off">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group d-none">
+                        <input type="hidden" id="Id" name="Id" />
+                        <input type="hidden" id="Id_Customer" name="Id_Customer" />
+                        <input type="hidden" id="Id_Kendaraan" name="Id_Kendaraan" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="CustomerBaru">
+                                    <label class="form-check-label" name="CustomerBaru" for="CustomerBaru">Customer Baru</label>
+                                </div>
+                            </div>
+
+                            <div class="customerbaru">
+                                <div class="form-group">
+                                    <label>Nama Customer</label>
+                                    <input type="text" name="CustomerBaruNama" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="CustomerBaruEmail" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Telp</label>
+                                    <input type="text" name="CustomerBaruTelp" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Alamat</label>
+                                    <textarea type="text" name="CustomerBaruAlamat" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="customerlama">
+                                <div class="form-group">
+                                    <label>Nama Customer</label>
+                                    <input type="text" name="CustomerLamaNama" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="CustomerLamaEmail" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Telp</label>
+                                    <input type="text" name="CustomerLamaTelp" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Alamat</label>
+                                    <textarea type="text" name="CustomerLamaAlamat" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>No Polisi</label>
+                                <input type="text" name="NoPolisi" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Tipe</label>
+                                <input type="text" name="TipeKendaraan" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Warna</label>
+                                <input type="text" name="Warna" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Harga</label>
+                                <input type="text" name="Harga" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Sewa</label>
+                                <input type="date" name="TanggalSewa" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Lama Sewa (Hari)</label>
+                                <input type="number" min="1" name="LamaSewa" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary show-only-type-post show-only-type-put">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isetup_Model;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        isetup_Model = new iSetup({
+            id: 'modal_Model',
+            url : '@Url.Action("Data")',
+            param: e => ({
+                __RequestVerificationToken: e.target['__RequestVerificationToken'].value,
+                Id: e.target['Id'].value,
+                model: {
+                    ...getModelFromForm(e.target, isetup_Model),
+                }
+            }),
+            success: (r, t) => {
+                $(t.id).modal('hide');
+                itable_Model.refresh();
+            },
+            modalDataOnSuccess: (r, t) => {
+                const form = $(t.id).find('form')[0];
+                setFormFromModel(form, r.data, t);
+            },
+            modalOnReady: (e, t) => {
+				const form = $(t.id).find('form')[0];
+
+				if (t.type === 'POST') {
+                    form['Id'].value = 0;
+                    $('.customerbaru').hide();
+				}
+			}
+        });
+
+        isetup_Model.jenisOnChange = () => {
+            $(isetup_Model.form[0]['Id_TipeKendaraan']).val('').trigger('change');
+        };
+
+        mahasSelect2($(isetup_Model.form[0]['Id_TipeKendaraan']), '@Url.Action("Select2_TipeKendaraan")', () => ({
+            jenis: isetup_Model.form[0]['Jenis'].value
+        }));
+    });
+</script>
+

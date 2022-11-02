@@ -13,7 +13,7 @@ namespace rentcar.Models.Db
         public int Id_KondisiKendaraan { get; set; }
 
         [Required]
-		public string Nama { get; set; } = "";
+		public string FotoFileName { get; set; } = "";
 
         [Column(TypeName = "Image")]
         public byte[]? Foto { get; set; }

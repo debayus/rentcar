@@ -28,15 +28,27 @@ namespace rentcar.Models.View
 
     public class KendaraanPostPutViewModel
     {
+        [Required]
         public int Id_Vendor { get; set; }
+
+        [Required]
         public int Id_TipeKendaraan { get; set; }
+
+        [Required]
         public string NoPolisi { get; set; } = "";
+
         public int? TahunPembuatan { get; set; }
+
         public string? Warna { get; set; }
+
         public DateTime? TanggalSamsat { get; set; }
+
         public DateTime? TanggalSamsat5Tahun { get; set; }
+
         public string? NomorMesin { get; set; }
+
         public string? STNKAtasNama { get; set; }
+
         public byte[]? Foto { get; set; }
     }
 }
